@@ -1,35 +1,38 @@
 import React from "react";
 
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Header from "./components/header";
 import Home from "./components/Home";
 import Footer from "./components/footer";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Gallery from "./pages/Gallery";
-import Patner from "./pages/Patner";
+import Partner from "./pages/Patner";
 import Blog from "./pages/Blog";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Blogpage from "./pages/Blogpage";
 export default function App() {
   return (
     <>
-      <Header />
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/gallery" element={<Gallery />} />
-          <Route path="/patner" element={<Patner />} />
+          <Route path="/partner" element={<Partner />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/blog/:title" element={<Blogpage />} />
+
           {/* <Route path="/" element={<Buy />} /> */}
         </Routes>
+        <Footer />
       </BrowserRouter>
-      <Footer />
     </>
   );
 }

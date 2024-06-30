@@ -3,24 +3,26 @@ import React from "react";
 function Footer() {
   return (
     <>
-      <footer className="bg-dark pt-24 pb-12">
+      <footer className=" dark:bg-slate-200 pt-24 pb-12">
         <div className="container">
           <div className="flex flex-wrap">
-            <div className="mb-12 w-full px-4 font-medium text-slate-300 md:w-1/3">
-              <h2 className="mb-5 text-4xl font-bold text-white">Travelaku</h2>
-              <h3 className="mb-2 text-xl font-bold">Hubungi Kami</h3>
-              <p>raihanramadhan435@gmail.com</p>
-              <p>Jl. Ciremai Blok A No. 21</p>
-              <p>Purwakarta</p>
+            <div className="mb-12 w-full px-4 font-medium dark:text-slate-600 md:w-1/3">
+              <h2 className="mb-5 text-4xl font-bold dark:text-black">
+                Trave-tour
+              </h2>
+              <h3 className="mb-2 text-xl font-bold">Adarsha-Paudyal</h3>
+              <p>code.adarsha@gmail.com</p>
+              <p>nepal</p>
+              <p>xyz</p>
             </div>
             <div className="mb-12 w-full px-4 md:w-1/3">
-              <h3 className="mb-5 text-xl font-semibold text-white">
+              <h3 className="mb-5 text-xl font-semibold dark:text-black">
                 Kategori Tulisan
               </h3>
-              <ul className="text-slate-300">
+              <ul className="dark:text-slate-600 ">
                 <li>
                   <a
-                    href="#"
+                    href="/"
                     className="mb-3 inline-block text-base hover:text-primary"
                   >
                     Travel
@@ -28,7 +30,7 @@ function Footer() {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="/"
                     className="mb-3 inline-block text-base hover:text-primary"
                   >
                     Wisata
@@ -36,7 +38,7 @@ function Footer() {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="/"
                     className="mb-3 inline-block text-base hover:text-primary"
                   >
                     Liburan
@@ -45,11 +47,13 @@ function Footer() {
               </ul>
             </div>
             <div className="mb-12 w-full px-4 md:w-1/3">
-              <h3 className="mb-5 text-xl font-semibold text-white">Tautan</h3>
-              <ul className="text-slate-300">
+              <h3 className="mb-5 text-xl font-semibold dark:text-black">
+                Tautan
+              </h3>
+              <ul className="dark:text-black">
                 <li>
                   <a
-                    href="#home"
+                    href="/"
                     className="mb-3 inline-block text-base hover:text-primary"
                   >
                     Home
@@ -57,7 +61,7 @@ function Footer() {
                 </li>
                 <li>
                   <a
-                    href="#about"
+                    href="about"
                     className="mb-3 inline-block text-base hover:text-primary"
                   >
                     About
@@ -65,7 +69,7 @@ function Footer() {
                 </li>
                 <li>
                   <a
-                    href="#gallery"
+                    href="gallery"
                     className="mb-3 inline-block text-base hover:text-primary"
                   >
                     Gallery
@@ -73,7 +77,7 @@ function Footer() {
                 </li>
                 <li>
                   <a
-                    href="#partner"
+                    href="partner"
                     className="mb-3 inline-block text-base hover:text-primary"
                   >
                     Partner
@@ -81,7 +85,7 @@ function Footer() {
                 </li>
                 <li>
                   <a
-                    href="#blog"
+                    href="blog"
                     className="mb-3 inline-block text-base hover:text-primary"
                   >
                     Blog
@@ -89,7 +93,7 @@ function Footer() {
                 </li>
                 <li>
                   <a
-                    href="#contact"
+                    href="contact"
                     className="mb-3 inline-block text-base hover:text-primary"
                   >
                     Contact
@@ -104,7 +108,7 @@ function Footer() {
               <a
                 href="https://youtube.com/c/PesonaIndonesiaofficial"
                 target="_blank"
-                className="mr-3 flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 text-slate-300 hover:border-primary hover:bg-primary hover:text-white"
+                className="mr-3 flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 dark:text-slate-600 hover:border-primary hover:bg-primary hover:dark:text-black"
               >
                 <svg
                   role="img"
@@ -121,7 +125,7 @@ function Footer() {
               <a
                 href="https://instagram.com/pesona.indonesia?igshid=YmMyMTA2M2Y="
                 target="_blank"
-                className="mr-3 flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 text-slate-300 hover:border-primary hover:bg-primary hover:text-white"
+                className="mr-3 flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 dark:text-slate-600 hover:border-primary hover:bg-primary hover:dark:text-black"
               >
                 <svg
                   role="img"
@@ -138,7 +142,7 @@ function Footer() {
               <a
                 href="https://twitter.com/pesonaindonesia"
                 target="_blank"
-                className="mr-3 flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 text-slate-300 hover:border-primary hover:bg-primary hover:text-white"
+                className="mr-3 flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 dark:text-slate-600 hover:border-primary hover:bg-primary hover:dark:text-black"
               >
                 <svg
                   role="img"
@@ -155,7 +159,7 @@ function Footer() {
               <a
                 href="https://www.tiktok.com/@pesonaindonesia?is_from_webapp=1&sender_device=pc"
                 target="_blank"
-                className="mr-3 flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 text-slate-300 hover:border-primary hover:bg-primary hover:text-white"
+                className="mr-3 flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 dark:text-slate-600 hover:border-primary hover:bg-primary hover:dark:text-black"
               >
                 <svg
                   role="img"
@@ -172,7 +176,7 @@ function Footer() {
               <a
                 href="https://facebook.com/pesona.indonesia?_rdc=1&_rdr"
                 target="_blank"
-                className="mr-3 flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 text-slate-300 hover:border-primary hover:bg-primary hover:text-white"
+                className="mr-3 flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 dark:text-slate-600 hover:border-primary hover:bg-primary hover:dark:text-black"
               >
                 <svg
                   role="img"
@@ -187,15 +191,8 @@ function Footer() {
               </a>
             </div>
             <p className="text-center text-xs font-medium text-slate-500">
-              Dibuat dengan <span className="text-pink-500">❤️</span> oleh
-              <a
-                href="https://instagram.com/raihanrmdhn_09"
-                target="_blank"
-                className="font-bold text-primary"
-              >
-                Raihan Ramadhan
-              </a>
-              , menggunakan
+              adarsha-tour.com <span className="text-pink-500">❤️</span> Adarsha
+              ,
               <a
                 href="https://tailwindcss.com"
                 target="_blank"

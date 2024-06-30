@@ -9,8 +9,8 @@ const TourBooking = () => {
   };
 
   return (
-    <div className=" flex items-center justify-center bg-slate-100  ">
-      <div className="bg-white bg-opacity-10 bg-gradient-to-r from-blue-500 to-purple-50 backdrop-filter backdrop-blur-lg p-6 rounded-lg shadow-lg flex space-x-4">
+    <div className=" flex items-center justify-center  dark:bg-slate-200 text-white ">
+      <div className="bg-yellow bg-opacity-10 bg-gradient-to-r from-blue-500 to-green backdrop-filter backdrop-blur-lg p-6 rounded-lg shadow-lg flex space-x-4">
         <div>
           <label className="block text-white mb-2" htmlFor="date">
             Select Date

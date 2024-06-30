@@ -1,6 +1,6 @@
 import React from "react";
 
-function Blogpage() {
+function Blogpage(data) {
   return (
     <>
       <section id="blog" className="pt-36 pb-32">
@@ -8,8 +8,8 @@ function Blogpage() {
           <div className="mx-auto w-full rounded-lg border px-8 py-8 shadow-lg lg:w-2/3">
             <img
               className="mb-2 w-full rounded-lg"
-              src="../img/destinasi/bali.webp"
-              alt="bali"
+              src={data.image_link}
+              alt="what"
             />
             <div className="flex items-center">
               <a
@@ -36,7 +36,7 @@ function Blogpage() {
                 target="_blank"
                 className="mr-3 mt-1 flex h-9 items-center justify-center rounded-full text-base font-semibold text-red-600 duration-500 hover:text-rose-300"
               >
-                Pantai Kuta (Bali).
+                {data.title}.
               </a>
             </div>
             <h1 className="mb-2 text-2xl font-bold text-dark lg:text-2xl">

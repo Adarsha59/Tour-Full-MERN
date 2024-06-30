@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "title": "Bali pagoda in sunrise, Indonesia",
+    "image_link": "https://img.freepik.com/free-photo/bali-pagoda-sunrise-indonesia_335224-1357.jpg?t=st=1719746160~exp=1719749760~hmac=7c8a55b0ef5f7e19a87b9e2a4005b36f37ad9d72132c76f47f1b7a9e7c50b6f1&w=1380",
+    "description": "Enjoy a serene sunrise at a pagoda in Bali, Indonesia. The tranquil ambiance and beautiful views make it a perfect spot for meditation and reflection."
+  },
+  {
+    "id": 2,
+    "title": "Snow-capped mountain landscape",
+    "image_link": "https://img.freepik.com/free-photo/snow-capped-mountain-landscape_335224-1358.jpg?t=st=1719746160~exp=1719749760~hmac=5bea3f7b60d9b09852aa25d0f8e6420f32cf92e857f4f3c6be607c15c41e3a8b&w=1380",
+    "description": "Experience the majesty of snow-capped mountains in this breathtaking landscape. The crisp air and stunning views offer an unforgettable adventure."
+  },
+  {
+    "id": 3,
+    "title": "Sunset over ocean",
+    "image_link": "https://img.freepik.com/free-photo/sunset-over-ocean_335224-1359.jpg?t=st=1719746160~exp=1719749760~hmac=1dfaf7c9b8b88b77f35cf527d0b97b5a2e59e566e4b72b3dbdb7b0c1b70d1783&w=1380",
+    "description": "Watch the sun dip below the horizon in a spectacular ocean sunset. The colors painting the sky create a mesmerizing scene of tranquility and beauty."
+  },
+  {
+    "id": 4,
+    "title": "Forest in autumn",
+    "image_link": "https://img.freepik.com/free-photo/forest-in-autumn_335224-1360.jpg?t=st=1719746160~exp=1719749760~hmac=0b3f37834e1c139c2b3d36a8b11e0388e5cde124fa78d0b2d576c5cde506ee5e&w=1380",
+    "description": "Walk through a vibrant autumn forest, where golden leaves create a carpet underfoot. The crisp air and earthy scents make it a perfect season for hiking."
+  },
+  {
+    "id": 5,
+    "title": "City skyline at night",
+    "image_link": "https://img.freepik.com/free-photo/city-skyline-at-night_335224-1361.jpg?t=st=1719746160~exp=1719749760~hmac=ff0c63a0a02a85d0c1a6ae001bce0f50f2ed7639e73c59e21b9ab8e6d6b7d37e&w=1380",
+    "description": "Admire the glittering city skyline at night, where lights illuminate towering skyscrapers. The bustling energy and urban glow create a vibrant atmosphere."
+  },
+  {
+    "id": 6,
+    "title": "Desert landscape",
+    "image_link": "https://img.freepik.com/free-photo/desert-landscape_335224-1362.jpg?t=st=1719746160~exp=1719749760~hmac=ba9b4b2b5ed27e89b3e08bc72a52e0c42e53ce2a98d3c30d3c32d6d5b0d5f1ee&w=1380",
+    "description": "Explore the vast beauty of a desert landscape, where rolling dunes and clear skies stretch as far as the eye can see. The peaceful solitude offers a unique escape."
+  },
+  {
+    "id": 7,
+    "title": "Waterfall in tropical forest",
+    "image_link": "https://img.freepik.com/free-photo/waterfall-tropical-forest_335224-1363.jpg?t=st=1719746160~exp=1719749760~hmac=0b7f8eefbe1cf26e0a2f1c1041c18036446d7ac520d4d394f8ab72b3c3f70497&w=1380",
+    "description": "Immerse yourself in the lush beauty of a tropical forest, where a cascading waterfall provides a refreshing oasis. The vibrant greenery and soothing sounds of water create a tranquil paradise."
+  },
+  {
+    "id": 8,
+    "title": "Historic architecture",
+    "image_link": "https://img.freepik.com/free-photo/historic-architecture_335224-1364.jpg?t=st=1719746160~exp=1719749760~hmac=7d6c7d5e8f3be004fc0e4f5e3428a6e14c4b787a78c2454e7e1771a9a34b8d68&w=1380",
+    "description": "Marvel at the grandeur of historic architecture, where intricate details and timeless designs stand as a testament to bygone eras. Each structure tells a story of cultural heritage and artistic brilliance."
+  }
+]

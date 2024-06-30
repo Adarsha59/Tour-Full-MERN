@@ -3,17 +3,17 @@ import React from "react";
 function About() {
   return (
     <>
-      <section id="about" className="pt-36 pb-32">
+      <section id="about" className="pt-36 pb-32  dark:bg-slate-200 text-white">
         <div className="container">
           <div className="flex flex-wrap">
             <div className="mb-10 w-full px-4 lg:w-1/2">
               <h4 className="mb-3 text-lg font-bold uppercase text-primary">
                 About Us
               </h4>
-              <h2 className="mb-5 max-w-md text-2xl font-bold text-dark lg:text-3xl">
+              <h2 className="mb-5 max-w-md text-2xl font-bold  dark:text-black lg:text-3xl">
                 Tentang travelaku.com
               </h2>
-              <p className="max-w-xl text-base font-medium text-secondary lg:text-lg">
+              <p className="max-w-xl text-base font-medium t dark:text-black lg:text-lg">
                 travelaku.com merupakan website sebagai wadah mempromosikan
                 wisata Indonesia untuk meningkatkan daya tarik masyarakat
                 terhadap indahnya pariwisata di Indonesia. travelaku.com juga
@@ -22,10 +22,10 @@ function About() {
               </p>
             </div>
             <div className="w-full px-4 lg:w-1/2">
-              <h3 className="mb-5 text-2xl font-semibold text-dark lg:pt-10 lg:text-3xl">
+              <h3 className="mb-5 text-2xl font-semibold  dark:text-black lg:pt-10 lg:text-3xl">
                 Temui Kami!
               </h3>
-              <p className="mb-6 text-base font-medium text-secondary lg:text-lg">
+              <p className="mb-6 text-base font-medium  dark:text-black lg:text-lg">
                 Temui kami di Platform Media Sosial lainnya untuk mendapatkan
                 informasi dan konten yang lebih menarik.
               </p>

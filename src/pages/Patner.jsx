@@ -1,16 +1,19 @@
 import React from "react";
 
-function Patner() {
+function Partner() {
   return (
     <>
-      <section id="partner" className="bg-slate-800 pt-36 pb-32">
+      <section
+        id="partner"
+        className=" dark:bg-slate-200 text-white  pt-36 pb-32"
+      >
         <div className="container">
           <div className="w-full px-4">
             <div className="mx-auto mb-16 text-center">
               <h4 className="mb-2 text-lg font-semibold text-primary">
                 Partner
               </h4>
-              <h2 className="mb-4 text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
+              <h2 className="mb-4 text-3xl font-bold dark:text-black sm:text-4xl lg:text-5xl">
                 Partner Pembayaran
               </h2>
               <p className="text-md font-medium text-secondary md:text-lg">
@@ -82,4 +85,4 @@ function Patner() {
   );
 }
 
-export default Patner;
+export default Partner;

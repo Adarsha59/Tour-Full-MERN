@@ -1,20 +1,57 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Header = () => {
+  const [sticky, setSticky] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setSticky(true);
+      } else {
+        setSticky(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
     console.log("toggleMenuclicked");
   };
+  const [theme, setTheme] = useState(false);
+  useEffect(() => {
+    const mode = localStorage.getItem("theme", theme);
+    setTheme(mode === "true");
+  }, []);
+  useEffect(() => {
+    if (theme) document.body.classList.add("dark");
+    else document.body.classList.remove("dark");
+    localStorage.setItem("bg-theme", theme);
+  }, [theme]);
+  const handleTheme = () => {
+    setTheme(!theme);
+  };
+
   return (
-    <header className="absolute top-0 left-0 z-10 flex w-full items-center bg-transparent">
+    <header
+      className={`fixed top-0 left-0 z-10 flex w-full items-center bg-transparent ${
+        sticky
+          ? "sticky-nav bg-base-200 dark:bg-slate-300 duration-150 transition-all ease-in-out"
+          : ""
+      }`}
+    >
       <div className="container">
         <div className="relative flex items-center justify-between">
           <div className="px-3">
             <a href="/" className="block py-6 text-lg font-bold text-primary">
-              travelaku.com
+              adarsha-tour.com
             </a>
           </div>
           <div className="flex items-center ml-9 ">
@@ -51,10 +88,10 @@ const Header = () => {
               id="nav-menu"
               className={`absolute right-9 top-full ${
                 !isMenuOpen ? "hidden" : ""
-              }  w-full max-w-[250px] rounded-lg bg-white py-5 shadow-lg lg:static md:block lg:max-w-full lg:rounded-none lg:bg-transparent lg:shadow-none`}
+              }  w-full max-w-[250px] rounded-lg  py-5 shadow-lg lg:static md:block lg:max-w-full lg:rounded-none lg:bg-transparent lg:shadow-none`}
               onClick={toggleMenu}
             >
-              <ul className="block lg:flex">
+              <ul className="block dark:text-black lg:flex">
                 <li className="group">
                   <a
                     href="/"
@@ -104,16 +141,21 @@ const Header = () => {
                   </a>
                 </li>
                 <div className="md:flex md:items-center md:ml-4">
-                  <button className="btn btn-outline btn-primary mx-3">
-                    Login
-                  </button>
-                  <button className="btn btn-secondary">Signup</button>
+                  <Link to="login">
+                    <button className="btn btn-outline btn-primary mx-3">
+                      Login
+                    </button>
+                  </Link>
+                  <Link to="signup">
+                    <button className="btn btn-secondary">Signup</button>
+                  </Link>
                 </div>
               </ul>
             </nav>
           </div>
           <input
             type="checkbox"
+            onClick={handleTheme}
             value="synthwave"
             className="  toggle theme-controller col-span-2 col-start-1 row-start-1 border-sky-400 bg-amber-300 [--tglbg:theme(colors.sky.500)] checked:border-blue-800 checked:bg-blue-300 checked:[--tglbg:theme(colors.blue.900)]"
           />
