@@ -1,14 +1,18 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
+function Blogpage() {
+  const location = useLocation();
+  const blogData = location.state.blogData;
 
-function Blogpage(data) {
+  console.log("This is data", blogData);
   return (
     <>
-      <section id="blog" className="pt-36 pb-32">
+      <section id="blog" className="pt-36 pb-32 dark:bg-slate-200 text-white">
         <div className="container mx-auto">
-          <div className="mx-auto w-full rounded-lg border px-8 py-8 shadow-lg lg:w-2/3">
+          <div className="mx-auto w-full rounded-lg  px-8 py-8 shadow-lg lg:w-2/3">
             <img
               className="mb-2 w-full rounded-lg"
-              src={data.image_link}
+              src={blogData.image_link}
               alt="what"
             />
             <div className="flex items-center">
@@ -36,13 +40,13 @@ function Blogpage(data) {
                 target="_blank"
                 className="mr-3 mt-1 flex h-9 items-center justify-center rounded-full text-base font-semibold text-red-600 duration-500 hover:text-rose-300"
               >
-                {data.title}.
+                {blogData.title}.
               </a>
             </div>
-            <h1 className="mb-2 text-2xl font-bold text-dark lg:text-2xl">
+            <h1 className="mb-2 text-2xl font-bold dark:text-black lg:text-2xl">
               Bali
             </h1>
-            <p className="mb-2">
+            <p className="mb-2 dark:text-black">
               Siapa pun tak ada yang bisa menyangkal keindahan yang ditawarkan
               Pulau Dewata. Baru-baru ini, Bali didapuk menjadi destinasi paling
               populer di dunia versi Tripadvisor Travellers' Choice tahun 2021.
@@ -51,16 +55,16 @@ function Blogpage(data) {
               #DiIndonesiaAja yang patut Sobat kunjungi setidaknya sekali seumur
               hidup!
             </p>
-            <h1 className="mb-2 text-2xl font-bold text-dark lg:text-2xl">
+            <h1 className="mb-2 text-2xl font-bold dark:text-black lg:text-2xl">
               Deretan pantai yang aduhai
             </h1>
-            <p className="mb-2">
+            <p className="mb-2 dark:text-black">
               Daya tarik utama Pulau Bali tentu saja terdapat pada wisata
               pantainya. Hampir semua wisatawan yang berlibur di Bali memasukkan
               pantai ke dalam daftar kunjungannya. Deretan pantai yang ada di
               Bali punya keunikan dan pesonanya tersendiri, lho!
             </p>
-            <p className="mb-6">
+            <p className="mb-6 dark:text-black">
               Salah satu pantai yang paling populer di Bali adalah Pantai Kuta.
               Pantai berpasir putih ini terkenal berkat ombaknya yang besar
               sekaligus menjadi surga bagi para peselancar. Karena lokasinya
@@ -68,7 +72,7 @@ function Blogpage(data) {
               dapat dengan mudah Sobat Pesona temukan di sepanjang jalan Pantai
               Kuta.
             </p>
-            <p className="mb-6 truncate font-bold text-dark">
+            <p className="mb-6 truncate font-bold dark:text-black">
               Source Indonesia Travel :
               <a
                 href="https://www.indonesia.travel/id/id/destinasi/bali-nusa-tenggara/bali"
@@ -80,7 +84,7 @@ function Blogpage(data) {
             <div className="w-full px-4">
               <a href="../form/php/form.php">
                 <button className="w-full rounded-full bg-primary py-3 px-8 text-base text-white transition duration-500 hover:opacity-80 hover:shadow-lg">
-                  Pesan Tiket
+                  Book now
                 </button>
               </a>
             </div>

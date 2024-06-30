@@ -13,6 +13,11 @@ import Blog from "./pages/Blog";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Blogpage from "./pages/Blogpage";
+import Dashboard from "./pages/Dashboard";
+import Places from "./components/places";
+import blogs from "./components/blogs";
+import Blogs from "./components/blogs";
+
 export default function App() {
   return (
     <>
@@ -27,6 +32,12 @@ export default function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          {/* <Route path="/admin" element={<Dashboard />} /> */}
+          <Route path="/admin" element={<Dashboard />}>
+            <Route path="places" element={<Places />} />
+            <Route path="blogs" element={<Blogs />} />
+          </Route>
+
           <Route path="/blog/:title" element={<Blogpage />} />
 
           {/* <Route path="/" element={<Buy />} /> */}
