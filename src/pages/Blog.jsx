@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import blogData from "../../public/blog.json";
 import { useNavigate } from "react-router-dom";
 function Blog() {
+  const [blogData, setBlogData] = useState([]);
+
+  useEffect(() => {
+    const fetchBlogData = async () => {
+      try {
+        const response = await axios.get("http://localhost:3001/gallery");
+        setBlogData(response.data);
+        console.log("Fetch data form server ", response.data);
+      } catch (error) {
+        console.log("Error fetching data", error);
+      }
+    };
+
+    fetchBlogData();
+  }, []);
   const navigate = useNavigate();
 
   const handleNavigate = (data) => {
