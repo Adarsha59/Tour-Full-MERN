@@ -1,6 +1,37 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 function Signup() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    const signupData = {
+      name: data.name,
+      email: data.email,
+      password: data.password,
+    };
+    console.log(signupData);
+    await axios
+      .post(`http://localhost:3001/user/signup`, signupData)
+      .then((response) => {
+        if (response.data) {
+          console.log("User Signup  ", response.data);
+          toast.success("User Signup Success");
+        }
+        localStorage.setItem("userdetails", JSON.stringify(response.data.user));
+      })
+      .catch((error) => {
+        console.log("Vayena", error);
+        toast.error("User Signup Failed");
+      });
+  };
+
   return (
     <>
       <section className=" dark:bg-slate-200 text-white">
@@ -16,7 +47,10 @@ function Signup() {
               <h1 className="text-xl font-bold leading-tight tracking-tight md:text-2xl  text-white dark:text-black ">
                 Create new account
               </h1>
-              <form className="space-y-4 md:space-y-6" action="#">
+              <form
+                className="space-y-4 md:space-y-6"
+                onSubmit={handleSubmit(onSubmit)}
+              >
                 <div>
                   <label
                     for="email"
@@ -27,12 +61,13 @@ function Signup() {
                   <input
                     type="email"
                     name="email"
+                    {...register("email", { required: true })}
                     id="email"
                     className="bg-gray-50 border border-gray-300  rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  text-white dark:text-black  dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="name@company.com"
                     required=""
                   />
-                </div>{" "}
+                </div>
                 <div>
                   <label
                     for="email"
@@ -43,6 +78,7 @@ function Signup() {
                   <input
                     type="name"
                     name="name"
+                    {...register("name", { required: true })}
                     id="name"
                     className="bg-gray-50 border border-gray-300  rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  text-white dark:text-black  dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="xyz abc"
@@ -58,6 +94,7 @@ function Signup() {
                   </label>
                   <input
                     type="password"
+                    {...register("password", { required: true })}
                     name="password"
                     id="password"
                     placeholder="••••••••"

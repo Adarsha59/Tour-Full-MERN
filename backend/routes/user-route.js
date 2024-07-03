@@ -25,7 +25,14 @@ router.post("/signup", async (req, res) => {
     });
     // Save the new user
     await newUser.save();
-    return res.status(200).json({ message: "User created" });
+    // return res.status(200).json({ message: "User created" });
+    res.status(200).json({
+      message: "User created successfully from baackend",
+      user: {
+        id: newUser._id,
+        email: newUser.email,
+      },
+    });
   } catch (error) {
     console.error("Error creating new user:", error.message);
     res.status(500).json({ message: "Internal Server Error" }); // Respond with a server error

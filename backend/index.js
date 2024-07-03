@@ -4,9 +4,10 @@ import dotenv from "dotenv";
 import galleryRoute from "./routes/gallery-route.js";
 import blogRoute from "./routes/blog-route.js";
 import userRoute from "./routes/user-route.js";
+import cors from "cors";
 const app = express();
 dotenv.config();
-
+app.use(cors());
 const port = process.env.PORT || 3000;
 const URI = process.env.MONGODB_URI;
 

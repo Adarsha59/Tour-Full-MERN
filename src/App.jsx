@@ -17,7 +17,7 @@ import Dashboard from "./pages/Dashboard";
 import Places from "./components/places";
 import blogs from "./components/blogs";
 import Blogs from "./components/blogs";
-
+import toast, { Toaster } from "react-hot-toast";
 export default function App() {
   return (
     <>
@@ -43,6 +43,7 @@ export default function App() {
           {/* <Route path="/" element={<Buy />} /> */}
         </Routes>
         <Footer />
+        <Toaster />
       </BrowserRouter>
     </>
   );

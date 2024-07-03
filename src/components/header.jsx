@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
-
 const Header = () => {
   const [sticky, setSticky] = useState(false);
   useEffect(() => {
@@ -23,6 +23,7 @@ const Header = () => {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+
     console.log("toggleMenuclicked");
   };
   const [theme, setTheme] = useState(false);
@@ -31,8 +32,12 @@ const Header = () => {
     setTheme(mode === "true");
   }, []);
   useEffect(() => {
-    if (theme) document.body.classList.add("dark");
-    else document.body.classList.remove("dark");
+    if (theme) {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+      // toast.success("Dark Mode");
+    }
     localStorage.setItem("bg-theme", theme);
   }, [theme]);
   const handleTheme = () => {

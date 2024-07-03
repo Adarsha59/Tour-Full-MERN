@@ -1,6 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import galleryData from "../../public/gallery.json";
+import axios from "axios";
 function Gallery() {
+  const [galleryData, setGalleryData] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:3001/blog/");
+        setGalleryData(response.data);
+        console.log("Fetched data from server: ", response.data);
+      } catch (error) {
+        console.log("Error fetching data", error);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <>
       <section

@@ -1,6 +1,37 @@
+import axios from "axios";
 import React from "react";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 function Login() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    const signupData = {
+      name: data.name,
+      email: data.email,
+      password: data.password,
+    };
+    console.log(signupData);
+    await axios
+      .post(`http://localhost:3001/user/login`, signupData)
+      .then((response) => {
+        if (response.data) {
+          console.log("User login  ", response.data);
+          toast.success("User Login Success");
+        }
+        localStorage.setItem("userdetails", JSON.stringify(response.data.user));
+      })
+      .catch((error) => {
+        console.log("Vayena", error);
+        toast.error("User Login Failed");
+      });
+  };
+
   return (
     <>
       <section className="pt-36 pb-32  dark:bg-slate-200 text-white">
@@ -16,7 +47,10 @@ function Login() {
               <h1 className="text-xl font-bold leading-tight tracking-tight   md:text-2xl dark:text-white">
                 Sign in to your account
               </h1>
-              <form className="space-y-4 md:space-y-6" action="#">
+              <form
+                className="space-y-4 md:space-y-6"
+                onSubmit={handleSubmit(onSubmit)}
+              >
                 <div>
                   <label
                     for="email"
@@ -26,6 +60,7 @@ function Login() {
                   </label>
                   <input
                     type="email"
+                    {...register("email", { required: true })}
                     name="email"
                     id="email"
                     className="bg-gray-50 border border-gray-300   rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -42,6 +77,7 @@ function Login() {
                   </label>
                   <input
                     type="password"
+                    {...register("password", { required: true })}
                     name="password"
                     id="password"
                     placeholder="••••••••"
