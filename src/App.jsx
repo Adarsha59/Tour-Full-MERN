@@ -18,33 +18,38 @@ import Places from "./components/places";
 import blogs from "./components/blogs";
 import Blogs from "./components/blogs";
 import toast, { Toaster } from "react-hot-toast";
+import Auth, { AuthUser } from "./context/Auth";
+import { AdminLayout } from "./layout/AdminLayout";
+import AdminUser from "./pages/AdminUser";
+
 export default function App() {
   return (
     <>
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/partner" element={<Partner />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          {/* <Route path="/admin" element={<Dashboard />} /> */}
-          <Route path="/admin" element={<Dashboard />}>
-            <Route path="places" element={<Places />} />
-            <Route path="blogs" element={<Blogs />} />
-          </Route>
+      <Auth>
+        <BrowserRouter>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/partner" element={<Partner />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/blog/:title" element={<Blogpage />} />
 
-          <Route path="/blog/:title" element={<Blogpage />} />
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route path="users" element={<AdminUser />} />
+              <Route path="contacts" element={<Blogs />} />
+            </Route>
 
-          {/* <Route path="/" element={<Buy />} /> */}
-        </Routes>
-        <Footer />
-        <Toaster />
-      </BrowserRouter>
+            {/* <Route path="/" element={<Buy />} /> */}
+          </Routes>
+          <Footer />
+          <Toaster />
+        </BrowserRouter>
+      </Auth>
     </>
   );
 }

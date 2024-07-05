@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/Auth";
+import Logout from "../pages/Logout";
 const Header = () => {
+  const [isLoggedIn, setIsLoggedIn] = useAuth();
+  console.log("Hey ", isLoggedIn.name);
   const [sticky, setSticky] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
@@ -146,11 +150,16 @@ const Header = () => {
                   </a>
                 </li>
                 <div className="md:flex md:items-center md:ml-4">
-                  <Link to="login">
-                    <button className="btn btn-outline btn-primary mx-3">
-                      Login
-                    </button>
-                  </Link>
+                  {!isLoggedIn ? (
+                    <Link to="login">
+                      <button className="btn btn-outline btn-primary mx-3">
+                        Login
+                      </button>
+                    </Link>
+                  ) : (
+                    <Logout />
+                  )}
+
                   <Link to="signup">
                     <button className="btn btn-secondary">Signup</button>
                   </Link>

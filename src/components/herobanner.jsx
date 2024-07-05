@@ -1,6 +1,8 @@
 import React from "react";
+import { useAuth } from "../context/Auth";
 
 const Herobanner = () => {
+  const [isLoggedIn, isLoggedOut] = useAuth();
   return (
     <>
       <section id="home" className="pt-36 dark:bg-slate-200 text-white ">
@@ -8,7 +10,12 @@ const Herobanner = () => {
           <div className="flex flex-wrap">
             <div className="w-full self-center px-4 lg:w-1/2">
               <h1 className="mt-1 block max-w-lg text-4xl font-bold dark:text-black  lg:text-5xl">
-                Hello <span id="typed"></span>
+                Hello{" "}
+                {!isLoggedIn ? (
+                  <span id="typed"> Stranger</span>
+                ) : (
+                  <span id="typed"> {isLoggedIn.name}</span>
+                )}
               </h1>
               <h2 className="mb-5 text-base font-semibold text-secondary lg:text-lg">
                 Travel &

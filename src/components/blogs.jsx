@@ -47,6 +47,7 @@ const Blogs = () => {
             type="text"
             placeholder="Image URL"
             value={newBlog.image}
+            src={newBlog.image}
             onChange={(e) => setNewBlog({ ...newBlog, image: e.target.value })}
             className="flex-1 appearance-none border rounded p-3 text-gray-900 dark:bg-gray-800 dark:text-black"
           />

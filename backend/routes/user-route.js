@@ -41,8 +41,9 @@ router.post("/signup", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { name, email, password } = req.body;
     const existingUser = await User.findOne({ email });
+
     if (!existingUser) {
       return res.status(400).json({ message: "User does not exist" });
     }
@@ -53,7 +54,14 @@ router.post("/login", async (req, res) => {
     if (!isPasswordCorrect) {
       return res.status(400).json({ message: "Invalid credentials" });
     }
-    return res.status(200).json({ message: "Login Vayo" });
+    return res.status(200).json({
+      message: "login successful",
+      user: {
+        id: existingUser.id,
+        name: existingUser.name,
+        email: existingUser.email,
+      },
+    });
   } catch (error) {
     console.error("Error creating new user:", error.message);
     res.status(500).json({ message: "Internal Server Error" }); // Respond with a server error

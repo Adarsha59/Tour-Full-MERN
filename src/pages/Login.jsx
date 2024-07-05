@@ -11,17 +11,16 @@ function Login() {
   } = useForm();
 
   const onSubmit = async (data) => {
-    const signupData = {
+    const loginData = {
       name: data.name,
       email: data.email,
       password: data.password,
     };
-    console.log(signupData);
     await axios
-      .post(`http://localhost:3001/user/login`, signupData)
+      .post(`http://localhost:3001/user/login`, loginData)
       .then((response) => {
         if (response.data) {
-          console.log("User login  ", response.data);
+          console.log("User login yo hai  ", response.data);
           toast.success("User Login Success");
         }
         localStorage.setItem("userdetails", JSON.stringify(response.data.user));
