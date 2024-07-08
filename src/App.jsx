@@ -21,6 +21,7 @@ import toast, { Toaster } from "react-hot-toast";
 import Auth, { AuthUser } from "./context/Auth";
 import { AdminLayout } from "./layout/AdminLayout";
 import AdminUser from "./pages/AdminUser";
+import AdminBlog from "./pages/AdminBlog";
 
 export default function App() {
   return (
@@ -41,6 +42,7 @@ export default function App() {
 
             <Route path="/admin" element={<AdminLayout />}>
               <Route path="users" element={<AdminUser />} />
+              <Route path="blog" element={<AdminBlog />} />
               <Route path="contacts" element={<Blogs />} />
             </Route>
 
