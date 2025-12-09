@@ -1,72 +1,159 @@
-import React from "react";
+import { Mail, Phone, MapPin, MessageCircle, Send } from "lucide-react";
 
-function Contact() {
+export default function Contact() {
   return (
-    <>
-      <section id="contact" class="pt-36 pb-32 dark:bg-slate-200 text-white">
-        <div class="container">
-          <div class="w-full px-4">
-            <div class="mx-auto mb-16 max-w-xl text-center">
-              <h4 class="mb-2 text-lg font-semibold text-primary">Contact</h4>
-              <h2 class="mb-4 text-2xl font-bold dark:text-black sm:text-4xl lg:text-3xl">
-                feel free to contact me
-              </h2>
-              <p class="text-md font-medium text-secondary md:text-lg">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quibusdam non vitae nesciunt laboriosam. Delectus doloremque
-              </p>
-            </div>
+    <section className="relative w-full py-28">
+      <div className="max-w-7xl mx-auto px-4">
+        {/* Page Title */}
+        <div className="text-center mb-20">
+          <h1 className="text-4xl md:text-5xl font-black uppercase mb-4">
+            Contáctanos
+          </h1>
+          <p className="max-w-2xl mx-auto text-base md:text-lg opacity-80">
+            Ponte en contacto con nuestros expertos en viajes para tours
+            personalizados, trekking, vuelos en helicóptero y viajes de lujo por
+            todo Nepal.
+          </p>
+        </div>
+
+        {/* Main Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          {/* LEFT INFO PANEL */}
+          <div className="relative rounded-3xl p-10 shadow-2xl">
+            <h3 className="text-2xl font-extrabold mb-8">Ponte en Contacto</h3>
+
+            <p className="text-sm leading-relaxed mb-8 opacity-90">
+              Top of the World Adventure Pvt. Ltd. tiene su sede en el corazón
+              de Katmandú y se especializa en trekking, tours culturales,
+              aventuras en helicóptero, viajes a Bután, Tíbet y la sagrada ruta
+              al Monte Kailas.
+            </p>
+
+            <ul className="space-y-6 text-sm font-semibold">
+              <li className="flex items-center gap-4">
+                <MapPin className="w-5 h-5 text-primary" />
+                Thamel Marg, Kwabahal, Katmandú, Nepal
+              </li>
+
+              <li className="flex items-center gap-4">
+                <Mail className="w-5 h-5 text-primary" />
+                info@topoftheworldadv.com
+              </li>
+
+              <li className="flex items-center gap-4">
+                <Phone className="w-5 h-5 text-primary" />
+                +977 9841492029 Janardan
+              </li>
+
+              <li className="flex items-center gap-4">
+                <Phone className="w-5 h-5 text-primary" />
+                +977 9860974753 Shreeram
+              </li>
+
+              <li className="flex items-center gap-4">
+                <MessageCircle className="w-5 h-5 text-primary" />
+                WhatsApp +977 9841492029
+              </li>
+            </ul>
           </div>
 
-          <form name="travelaku-contact-form">
-            <div class="w-full lg:mx-auto lg:w-2/3">
-              <div class="mb-8 w-full px-4">
-                <label for="name" class="text-base font-bold text-primary">
-                  Nama
-                </label>
+          {/* RIGHT FORM PANEL */}
+          <div className="relative rounded-3xl p-10 shadow-2xl">
+            <h3 className="text-2xl font-extrabold mb-8">
+              Envíanos un Mensaje
+            </h3>
+
+            <form className="space-y-6">
+              {/* Name */}
+              <div className="relative">
                 <input
                   type="text"
-                  name="nama"
-                  id="name"
-                  class="w-full rounded-md dark:bg-white  p-3 text-dark focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  required
+                  className="peer w-full bg-transparent border-b-2 outline-none py-3 text-sm"
+                  placeholder=" "
                 />
-              </div>
-              <div class="mb-8 w-full px-4">
-                <label for="email" class="text-base font-bold text-primary">
-                  Email
+                <label className="absolute left-0 top-3 text-sm opacity-70 transition peer-placeholder-shown:top-3 peer-focus:-top-3 peer-focus:text-xs">
+                  Nombre Completo
                 </label>
+              </div>
+
+              {/* Email */}
+              <div className="relative">
                 <input
-                  type="text"
-                  name="email"
-                  id="email"
-                  class="w-full rounded-md dark:bg-white  p-3 text-dark focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  type="email"
+                  required
+                  className="peer w-full bg-transparent border-b-2 outline-none py-3 text-sm"
+                  placeholder=" "
                 />
-              </div>
-              <div class="mb-8 w-full px-4">
-                <label for="message" class="text-base font-bold text-primary">
-                  Pesan
+                <label className="absolute left-0 top-3 text-sm opacity-70 transition peer-placeholder-shown:top-3 peer-focus:-top-3 peer-focus:text-xs">
+                  Correo Electrónico
                 </label>
-                <textarea
-                  type="message"
-                  name="pesan"
-                  id="message"
-                  class="h-32 w-full rounded-md dark:bg-white  p-3 text-dark focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-                ></textarea>
               </div>
-              <div class="w-full px-4">
-                <button
-                  type="submit"
-                  class="w-full rounded-full bg-primary py-3 px-8 text-base font-semibold text-white transition duration-500 hover:opacity-80 hover:shadow-lg"
+
+              {/* Phone */}
+              <div className="relative">
+                <input
+                  type="tel"
+                  required
+                  className="peer w-full bg-transparent border-b-2 outline-none py-3 text-sm"
+                  placeholder=" "
+                />
+                <label className="absolute left-0 top-3 text-sm opacity-70 transition peer-placeholder-shown:top-3 peer-focus:-top-3 peer-focus:text-xs">
+                  Número de Teléfono
+                </label>
+              </div>
+
+              {/* Country */}
+              <div className="relative">
+                <select
+                  required
+                  className="w-full bg-transparent border-b-2 outline-none py-3 text-sm"
                 >
-                  Submit
-                </button>
+                  <option value="">Selecciona tu País</option>
+                  <option>Nepal</option>
+                  <option>India</option>
+                  <option>Estados Unidos</option>
+                  <option>Reino Unido</option>
+                  <option>Australia</option>
+                </select>
               </div>
-            </div>
-          </form>
+
+              {/* Message */}
+              <div className="relative">
+                <textarea
+                  rows="5"
+                  required
+                  className="peer w-full bg-transparent border-b-2 outline-none py-3 text-sm"
+                  placeholder=" "
+                />
+                <label className="absolute left-0 top-3 text-sm opacity-70 transition peer-placeholder-shown:top-3 peer-focus:-top-3 peer-focus:text-xs">
+                  Preguntas o Mensaje
+                </label>
+              </div>
+
+              {/* Button */}
+              <button
+                type="submit"
+                className="w-full flex items-center justify-center gap-2 py-4 rounded-xl font-extrabold bg-primary hover:opacity-90 transition"
+              >
+                <Send className="w-5 h-5" />
+                Enviar Mensaje
+              </button>
+            </form>
+          </div>
         </div>
-      </section>
-    </>
+
+        {/* MAP */}
+        <div className="mt-24 overflow-hidden rounded-3xl shadow-2xl filter grayscale contrast-125">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7064.424773825243!2d85.310963!3d27.710728!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb18fce48aa515%3A0x76202b39b12d3ff!2sTop%20of%20the%20World%20Adventure!5e0!3m2!1sen!2snp!4v1723534517391!5m2!1sen!2snp"
+            width="100%"
+            height="500"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </div>
+      </div>
+    </section>
   );
 }
-
-export default Contact;

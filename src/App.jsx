@@ -1,10 +1,7 @@
 import React from "react";
 
-import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import Header from "./components/header";
 import Home from "./components/Home";
-import Footer from "./components/footer";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Gallery from "./pages/Gallery";
@@ -19,38 +16,76 @@ import blogs from "./components/blogs";
 import Blogs from "./components/blogs";
 import toast, { Toaster } from "react-hot-toast";
 import Auth, { AuthUser } from "./context/Auth";
-import { AdminLayout } from "./layout/AdminLayout";
 import AdminUser from "./pages/AdminUser";
 import AdminBlog from "./pages/AdminBlog";
+import DashboardHome from "./components/DashboardHome";
+import AdminLayout from "./layout/AdminLayout";
+import ClientLayout from "./layout/ClientLayout";
+import WebsiteList from "./pages/admin/website/WebsiteList";
+import { ThemeProvider } from "./context/ThemeContext";
+import WebsiteEdit from "./pages/admin/website/WebsiteEdit";
+import WebsiteCreate from "./pages/admin/website/WebsiteCreate";
+import PackageList from "./pages/admin/packages/PackageList";
+import PackageCreate from "./pages/admin/packages/PackageCreate";
+import PackageEdit from "./pages/admin/packages/PackageEdit";
+import Packages from "./pages/packages";
+import PackageDetail from "./pages/PackageDetail";
+import PackageCategoryAdmin from "./pages/admin/categories/PackageCategoryAdmin";
+import CategoryPackages from "./pages/CategoryPackages";
+import PackageVideoAdmin from "./pages/admin/video/VideoAdmin";
+import PackageVideoCarousel from "./components/VideoCarousel";
 
 export default function App() {
   return (
     <>
       <Auth>
-        <BrowserRouter>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/gallery" element={<Gallery />} />
-            <Route path="/partner" element={<Partner />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/blog/:title" element={<Blogpage />} />
+        <ThemeProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route element={<ClientLayout />}>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/gallery" element={<Gallery />} />
+                <Route path="/video" element={<PackageVideoCarousel />} />
+                <Route path="/partner" element={<Partner />} />
+                <Route path="/packages" element={<Packages />} />
+                <Route path="/packages/:id" element={<PackageDetail />} />
+                <Route path="/category/:id" element={<CategoryPackages />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/blog/:title" element={<Blogpage />} />
+              </Route>
+              <Route path="/admin" element={<AdminLayout />}>
+                <Route path="dashboard" element={<DashboardHome />} />
+                <Route path="users" element={<AdminUser />} />
+                <Route path="video" element={<AdminUser />} />
 
-            <Route path="/admin" element={<AdminLayout />}>
-              <Route path="users" element={<AdminUser />} />
-              <Route path="blog" element={<AdminBlog />} />
-              <Route path="contacts" element={<Blogs />} />
-            </Route>
+                <Route path="blog" element={<AdminBlog />} />
+                <Route path="contacts" element={<Blogs />} />
+                <Route path="categories" element={<PackageCategoryAdmin />} />
+                <Route path="/admin/videos" element={<PackageVideoAdmin />} />
 
-            {/* <Route path="/" element={<Buy />} /> */}
-          </Routes>
-          <Footer />
-          <Toaster />
-        </BrowserRouter>
+                <Route path="website" element={<WebsiteList />} />
+                <Route path="website/create" element={<WebsiteCreate />} />
+                <Route path="website/edit/:id" element={<WebsiteEdit />} />
+                <Route path="/admin/packages" element={<PackageList />} />
+                <Route
+                  path="/admin/packages/create"
+                  element={<PackageCreate />}
+                />
+                <Route
+                  path="/admin/packages/edit/:id"
+                  element={<PackageEdit />}
+                />
+              </Route>
+
+              {/* <Route path="/" element={<Buy />} /> */}
+            </Routes>
+            <Toaster />
+          </BrowserRouter>
+        </ThemeProvider>
       </Auth>
     </>
   );

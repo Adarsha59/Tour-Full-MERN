@@ -1,53 +1,49 @@
 import React from "react";
 import { useAuth } from "../context/Auth";
 
-const Herobanner = () => {
-  const [isLoggedIn, isLoggedOut] = useAuth();
-  return (
-    <>
-      <section id="home" className="pt-36 dark:bg-slate-200 text-white ">
-        <div className="container">
-          <div className="flex flex-wrap">
-            <div className="w-full self-center px-4 lg:w-1/2">
-              <h1 className="mt-1 block max-w-lg text-4xl font-bold dark:text-black  lg:text-5xl">
-                Hello{" "}
-                {!isLoggedIn ? (
-                  <span id="typed"> Stranger</span>
-                ) : (
-                  <span id="typed"> {isLoggedIn.name}</span>
-                )}
-              </h1>
-              <h2 className="mb-5 text-base font-semibold text-secondary lg:text-lg">
-                Travel &
-                <span className="text-base font-semibold text-dark lg:text-lg">
-                  Vacation
-                </span>
-              </h2>
-              <p className="mb-10 font-medium leading-relaxed text-secondary">
-                aaba jane hoena ta tour la booking garam aafno fav destination
-                adarsha-tour.com bata hai ta
-              </p>
+const Herobanner = ({ title, subtitle, cta, image }) => {
+  const [isLoggedIn] = useAuth(); // not isLoggedOut
+  const username = isLoggedIn?.name || "Stranger";
 
-              <a
-                href="#about"
-                className="rounded-full bg-primary py-4 px-8 text-base text-white transition duration-300 ease-in-out hover:opacity-80 hover:shadow-lg"
-              >
-                Book-Now
-              </a>
-            </div>
-            <div className="w-full self-end px-4 lg:w-1/2">
-              <div className="mt-10 lg:right-0 lg:mb-16 lg:mt-6">
-                <img
-                  src="dist/img/HeroIcon.png"
-                  alt="Sandhika Galih"
-                  className="mx-auto max-w-full"
-                />
-              </div>
-            </div>
+  return (
+    <section className="  pt-28 pb-28 bg-gradient-to-br from-primary to-purple-700 text-white dark:text-black dark:bg-slate-100">
+      <div className="max-w-7xl mx-auto px-4 flex flex-col-reverse lg:flex-row items-center justify-between gap-12">
+        {/* LEFT SIDE */}
+        <div className="lg:w-1/2 text-center lg:text-left">
+          <h1 className="text-4xl lg:text-5xl font-extrabold leading-tight mb-4">
+            {title || `Hello,`}{" "}
+            <span className="text-yellow-300">{username}</span>
+          </h1>
+          <h2 className="text-xl font-semibold text-white dark:text-gray-900 mb-6">
+            {subtitle || "Travel & Vacation with us"}
+            <span className="text-yellow-200 dark:text-primary">Vacation</span>
+          </h2>
+          <p className="mb-8 leading-relaxed text-white dark:text-gray-700 max-w-lg mx-auto lg:mx-0">
+            {cta ||
+              "Book your next trip with confidence and discover Nepal with us."}
+            <strong> adarsha-tour.com</strong> bata hai ta!
+          </p>
+
+          <a
+            href="#about"
+            className="inline-block text-primary font-semibold px-6 py-3 rounded-full shadow-md hover:opacity-90 hover:shadow-lg transition"
+          >
+            Book Now
+          </a>
+        </div>
+
+        {/* RIGHT SIDE IMAGE */}
+        <div className="lg:w-1/2">
+          <div className="relative">
+            <img
+              src="dist/img/logoo.gif"
+              alt="Animated Nepal Travel"
+              className="mx-auto w-full max-w-sm drop-shadow-xl rounded-2xl"
+            />
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 

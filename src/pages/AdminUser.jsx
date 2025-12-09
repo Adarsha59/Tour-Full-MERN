@@ -1,78 +1,34 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-function AdminUser() {
-  const [users, setUsers] = useState([]);
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await axios.get("http://localhost:3001/users/");
-        setUsers(response.data);
-        console.log("Fetched data from server: ", response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchUsers();
-  }, []);
-  const deleteUser = async (id) => {
-    try {
-      await axios.delete(`http://localhost:3001/users/${id}`);
-      setUsers(users.filter((user) => user.id !== id));
-    } catch (error) {
-      console.log(error);
-    }
-  };
+export default function UsersList() {
   return (
-    <>
-      <div className="text-gray-900 bg-gray-200">
-        <div className="p-4 flex">
-          <h1 className="text-3xl">Users</h1>
-        </div>
-        <div className="px-3 py-4 flex justify-center">
-          <table className="w-full text-md bg-white shadow-md rounded mb-4">
-            <tbody>
-              <tr className="border-b">
-                <th className="text-left p-3 px-5">Name</th>
-                <th className="text-left p-3 px-5">Email</th>
-                <th></th>
-              </tr>
-              <tr className="border-b hover:bg-orange-100 bg-gray-100">
-                <td className="p-3 px-5">
-                  <input
-                    type="text"
-                    value="user.name"
-                    className="bg-transparent border-b-2 border-gray-300 py-2"
-                  />
-                </td>
-                <td className="p-3 px-5">
-                  <input
-                    type="text"
-                    value="user.email"
-                    className="bg-transparent border-b-2 border-gray-300 py-2"
-                  />
-                </td>
+    <div>
+      <h2 className="text-2xl font-bold mb-6">Users</h2>
 
-                <td className="p-3 px-5 flex justify-end">
-                  <button
-                    type="button"
-                    className="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    type="button"
-                    className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      <div className="bg-white p-4 shadow rounded">
+        <table className="w-full">
+          <thead>
+            <tr>
+              <th className="p-3 text-left">Name</th>
+              <th className="p-3 text-left">Email</th>
+              <th className="p-3 text-left">Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr className="border-t">
+              <td className="p-3">John Doe</td>
+              <td className="p-3">john@mail.com</td>
+              <td className="p-3">
+                <button className="px-3 py-1 bg-blue-500 text-white rounded mr-2">
+                  Edit
+                </button>
+                <button className="px-3 py-1 bg-red-500 text-white rounded">
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </>
+    </div>
   );
 }
-
-export default AdminUser;

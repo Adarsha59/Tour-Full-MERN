@@ -2,86 +2,103 @@ import React from "react";
 
 function Partner() {
   return (
-    <>
-      <section
-        id="partner"
-        className=" dark:bg-slate-200 text-white  pt-36 pb-32"
-      >
-        <div className="container">
-          <div className="w-full px-4">
-            <div className="mx-auto mb-16 text-center">
-              <h4 className="mb-2 text-lg font-semibold text-primary">
-                Partner
-              </h4>
-              <h2 className="mb-4 text-3xl font-bold dark:text-black sm:text-4xl lg:text-5xl">
-                Partner Pembayaran
-              </h2>
-              <p className="text-md font-medium text-secondary md:text-lg">
-                Metode pembayaran yang tersedia untuk Anda pilih sesuai
-                keinginan.
-              </p>
+    <section id="partner" className="py-24">
+      <div className="max-w-7xl mx-auto px-4">
+        {/* Main Header */}
+        <div className="text-center mb-20">
+          <h2 className="text-4xl sm:text-5xl font-extrabold mb-4">
+            Confianza y Reconocimiento
+          </h2>
+          <p className="text-lg opacity-80 max-w-2xl mx-auto">
+            Afiliaciones oficiales de turismo y reseñas verificadas a nivel
+            mundial
+          </p>
+        </div>
+
+        {/* Two Column Premium Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14">
+          {/* Affiliations Card */}
+          <div className="rounded-3xl p-10 shadow-lg">
+            <h3 className="text-2xl font-bold text-center mb-10">
+              Nuestras Afiliaciones
+            </h3>
+
+            <div className="grid grid-cols-2 gap-10 place-items-center">
+              {[
+                {
+                  src: "/dist/img/svg/nepal-goverment.svg",
+                  alt: "Gobierno de Nepal",
+                },
+                {
+                  src: "/dist/img/svg/ntb.svg",
+                  alt: "Junta de Turismo de Nepal",
+                },
+                {
+                  src: "/dist/img/svg/nma.svg",
+                  alt: "Asociación de Montañismo de Nepal",
+                },
+                {
+                  src: "/dist/img/svg/taan.svg",
+                  alt: "Asociación de Agencias de Trekking de Nepal",
+                },
+              ].map((logo, i) => (
+                <div
+                  key={i}
+                  className="flex items-center justify-center p-5 rounded-xl transition duration-300 hover:scale-110 hover:shadow-md"
+                >
+                  <img
+                    src={logo.src}
+                    alt={logo.alt}
+                    className="h-20 max-w-[180px] object-contain"
+                  />
+                </div>
+              ))}
             </div>
           </div>
 
-          <div className="w-full px-4">
-            <div className="flex flex-wrap items-center justify-center">
+          {/* Recommendations Card */}
+          <div className="rounded-3xl p-10 shadow-lg">
+            <h3 className="text-2xl font-bold text-center mb-10">
+              Recomendaciones
+            </h3>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 place-items-center">
+              {/* Tripadvisor */}
               <a
-                href="#"
-                className="mx-4 max-w-[120px] py-6 opacity-60 grayscale transition duration-500 hover:opacity-100 hover:grayscale-0 lg:mx-6 xl:mx-8"
+                href="https://www.tripadvisor.com"
+                target="_blank"
+                rel="noreferrer"
+                className="w-full"
               >
-                <img src="dist/img/clients/alfamart.svg" alt="Alfamart" />
+                <div className="flex items-center justify-center p-6 rounded-xl transition duration-300 hover:scale-110 hover:shadow-xl">
+                  <img
+                    src="/dist/img/svg/tripadvisor.svg"
+                    alt="Tripadvisor"
+                    className="h-20 max-w-[200px] object-contain"
+                  />
+                </div>
               </a>
+
+              {/* Google */}
               <a
-                href="#"
-                className="mx-4 max-w-[120px] py-6 opacity-60 grayscale transition duration-500 hover:opacity-100 hover:grayscale-0 lg:mx-6 xl:mx-8"
+                href="https://www.google.com/maps"
+                target="_blank"
+                rel="noreferrer"
+                className="w-full"
               >
-                <img src="dist/img/clients/shopeepay.svg" alt="Shopeepay" />
-              </a>
-              <a
-                href="#"
-                className="mx-4 max-w-[120px] py-6 opacity-60 grayscale transition duration-500 hover:opacity-100 hover:grayscale-0 lg:mx-6 xl:mx-8"
-              >
-                <img src="dist/img/clients/atm-bersama.svg" alt="ATM Bersama" />
-              </a>
-              <a
-                href="#"
-                className="mx-4 max-w-[120px] py-6 opacity-60 grayscale transition duration-500 hover:opacity-100 hover:grayscale-0 lg:mx-6 xl:mx-8"
-              >
-                <img src="dist/img/clients/bni.svg" alt="BCA" />
-              </a>
-            </div>
-          </div>
-          <div className="w-full px-4">
-            <div className="flex flex-wrap items-center justify-center">
-              <a
-                href="#"
-                className="mx-4 max-w-[120px] py-6 opacity-60 grayscale transition duration-500 hover:opacity-100 hover:grayscale-0 lg:mx-6 xl:mx-8"
-              >
-                <img src="dist/img/clients/dana.svg" alt="Alfamart" />
-              </a>
-              <a
-                href="#"
-                className="mx-4 max-w-[120px] py-6 opacity-60 grayscale transition duration-500 hover:opacity-100 hover:grayscale-0 lg:mx-6 xl:mx-8"
-              >
-                <img src="dist/img/clients/gopay.svg" alt="Shopeepay" />
-              </a>
-              <a
-                href="#"
-                className="mx-4 max-w-[120px] py-6 opacity-60 grayscale transition duration-500 hover:opacity-100 hover:grayscale-0 lg:mx-6 xl:mx-8"
-              >
-                <img src="dist/img/clients/ovo.svg" alt="ATM-Bersama" />
-              </a>
-              <a
-                href="#"
-                className="mx-4 max-w-[120px] py-6 opacity-60 grayscale transition duration-500 hover:opacity-100 hover:grayscale-0 lg:mx-6 xl:mx-8"
-              >
-                <img src="dist/img/clients/mandiri.svg" alt="ovo" />
+                <div className="flex items-center justify-center p-6 rounded-xl transition duration-300 hover:scale-110 hover:shadow-xl">
+                  <img
+                    src="/dist/img/svg/google.svg"
+                    alt="Reseñas de Google"
+                    className="h-20 max-w-[200px] object-contain"
+                  />
+                </div>
               </a>
             </div>
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
 

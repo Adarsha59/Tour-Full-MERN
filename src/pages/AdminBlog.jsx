@@ -1,66 +1,23 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-
-function AdminBlog() {
+export default function BlogList() {
   return (
-    <>
-      <div className="text-gray-900 bg-gray-200">
-        <div className="p-4 flex">
-          <h1 className="text-3xl">Users</h1>
-        </div>
-        <div className="px-3 py-4 flex justify-center">
-          <table className="w-full text-md bg-white shadow-md rounded mb-4">
-            <tbody>
-              <tr className="border-b">
-                <th className="text-left p-3 px-5">Title</th>
-                <th className="text-left p-3 px-5">Description</th>
-                <th className="text-left p-3 px-5">Image Link</th>
-                <th></th>
-              </tr>
+    <div>
+      <h2 className="text-2xl font-bold mb-6">Blog Posts</h2>
 
-              <tr className="border-b hover:bg-orange-100 bg-gray-100">
-                <td className="p-3 px-5">
-                  <input
-                    type="text"
-                    value="user.title"
-                    className="bg-transparent border-b-2 border-gray-300 py-2"
-                  />
-                </td>
-                <td className="p-3 px-5 ">
-                  <textarea
-                    // value="user.description"
-                    className="bg-transparent border-b-2 border-gray-300overflow-x-auto overflow-y-auto w-full h-full"
-                    // Adjust rows based on content
-                  />
-                </td>
-                <td className="p-3 px-5">
-                  <input
-                    type="text"
-                    value="user.image_link"
-                    className="bg-transparent border-b-2 border-gray-300 py-2"
-                  />
-                </td>
-                <td className="p-3 px-5 flex justify-end">
-                  <button
-                    type="button"
-                    className="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    type="button"
-                    className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="bg-white p-4 shadow rounded">
+          <img
+            src="/placeholder.png"
+            className="w-full h-40 object-cover rounded mb-3"
+          />
+          <h3 className="text-lg font-semibold mb-2">Blog title</h3>
+          <button className="px-3 py-1 bg-blue-600 text-white rounded mr-2">
+            Edit
+          </button>
+          <button className="px-3 py-1 bg-red-600 text-white rounded">
+            Delete
+          </button>
         </div>
       </div>
-    </>
+    </div>
   );
 }
-
-export default AdminBlog;

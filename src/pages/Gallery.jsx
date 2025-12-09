@@ -1,70 +1,190 @@
 import React, { useEffect, useState } from "react";
-import galleryData from "../../public/gallery.json";
-import axios from "axios";
-function Gallery() {
-  const [galleryData, setGalleryData] = useState([]);
+import { getPackagesApi } from "../api/packageApi";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { Link } from "react-router-dom";
+
+export default function Gallery({
+  galleryTitle,
+  gallerySubtitle,
+  galleryDesc,
+  limit,
+}) {
+  const title = galleryTitle || "Photo Gallery";
+  const subtitle =
+    gallerySubtitle ||
+    "Discover the beauty of Nepal through our curated images";
+  const description =
+    galleryDesc ||
+    "A collection of moments captured during our adventures across Nepal";
+
+  const [packages, setPackages] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const [selectedPackage, setSelectedPackage] = useState(null);
+  const [selectedImageIdx, setSelectedImageIdx] = useState(0);
+
+  // Load packages
   useEffect(() => {
-    const fetchData = async () => {
+    const loadPackages = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/blog/");
-        setGalleryData(response.data);
-        console.log("Fetched data from server: ", response.data);
-      } catch (error) {
-        console.log("Error fetching data", error);
+        setLoading(true);
+        const res = await getPackagesApi();
+
+        const data = res.data.data || [];
+        setPackages(limit ? data.slice(0, limit) : data);
+      } catch (err) {
+        setError("Unable to load gallery images");
+      } finally {
+        setLoading(false);
       }
     };
-    fetchData();
-  }, []);
+
+    loadPackages();
+  }, [limit]);
+
+  const openLightbox = (pkg, imgIndex) => {
+    setSelectedPackage(pkg);
+    setSelectedImageIdx(imgIndex);
+  };
+
+  const handlePrev = () => {
+    const total = selectedPackage.gallery.length;
+    setSelectedImageIdx((prev) => (prev === 0 ? total - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    const total = selectedPackage.gallery.length;
+    setSelectedImageIdx((prev) => (prev === total - 1 ? 0 : prev + 1));
+  };
 
   return (
     <>
-      <section
-        id="gallery"
-        className=" dark:bg-slate-200 text-white pt-36 pb-32"
-      >
-        <div className="container">
-          <div className="w-full px-4">
-            <div className="mx-auto mb-16 max-w-xl text-center">
-              <h4 className="mb-2 text-lg font-semibold text-primary">
-                Gallery
+      <section id="gallery" className=" py-24">
+        <div className=" max-w-7xl mx-auto px-4 ">
+          {/* Header */}
+          <div className="w-full mb-16">
+            <div className="mx-auto max-w-3xl text-center">
+              <h4 className="mb-2 text-lg font-semibold text-blue-600 dark:text-blue-400">
+                {title}
               </h4>
-              <h2 className="mb-4 text-3xl font-bold dark:text-black sm:text-4xl lg:text-5xl">
-                Gallery Image
+              <h2 className="mb-4 text-3xl font-bold sm:text-4xl lg:text-5xl">
+                {subtitle}
               </h2>
-              <p className="text-md font-medium  dark:text-secondary md:text-lg">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Voluptatibus porro consequuntur alias, commodi nemo enim aliquam
-                ipsam obcaecati? Assumenda, ipsam?
-              </p>
+              <p className="text-base md:text-lg font-medium">{description}</p>
             </div>
           </div>
 
-          <div className="flex w-full flex-wrap px-4">
-            {galleryData.map((gallery) => (
-              <div className="w-1/2 p-4 md:w-1/4 " key={gallery.id}>
-                <a href={gallery.image_link} target="_blank">
-                  <div className="group relative overflow-hidden rounded-md shadow-md duration-500 hover:scale-95">
-                    <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-black/60 bg-opacity-90 text-center text-xs dark:text-white opacity-0 duration-500 hover:opacity-100 lg:text-xl">
-                      <h1 className="tracking-wider">{gallery.title}</h1>
-                    </div>
-                    <div className="flex flex-wrap content-center">
-                      <img
-                        src={gallery.image_link}
-                        alt="Raja Ampat"
-                        width="w-full"
-                        height="w-full"
-                        className="bg-center duration-500 group-hover:scale-125"
-                      />
-                    </div>
+          {/* Loading */}
+          {loading && (
+            <div className="flex justify-center items-center min-h-[300px]">
+              <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
+            </div>
+          )}
+
+          {/* Error */}
+          {error && !loading && (
+            <p className="text-center text-red-600">{error}</p>
+          )}
+
+          {/* Gallery Grid: Only first image of each package */}
+          {!loading && !error && packages.length > 0 && (
+            <div className="flex w-full flex-wrap ">
+              {packages.map((pkg) => {
+                const firstImage = pkg.gallery?.[0]?.image;
+                if (!firstImage) return null;
+
+                return (
+                  <div
+                    key={pkg._id}
+                    className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-3"
+                  >
+                    <button
+                      className="w-full"
+                      onClick={() => openLightbox(pkg, 0)}
+                    >
+                      <div className="group relative overflow-hidden rounded-lg shadow hover:shadow-xl bg-gray-100 dark:bg-gray-800">
+                        {/* Hover overlay */}
+                        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-black/60 text-white opacity-0 group-hover:opacity-100 transition p-4">
+                          <h1 className="text-sm font-semibold">{pkg.title}</h1>
+                          <span className="text-xs mt-2">Ver</span>
+                        </div>
+
+                        {/* First image */}
+                        <img
+                          src={firstImage}
+                          alt={pkg.title}
+                          className="w-full h-full object-cover aspect-square group-hover:scale-110 transition-transform duration-500"
+                          onError={(e) =>
+                            (e.target.src =
+                              "https://via.placeholder.com/400?text=Image+Not+Found")
+                          }
+                        />
+                      </div>
+                    </button>
                   </div>
-                </a>
-              </div>
-            ))}
-          </div>
+                );
+              })}
+            </div>
+          )}
         </div>
       </section>
+
+      {/* Lightbox Modal */}
+      {selectedPackage && (
+        <div
+          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+          onClick={() => setSelectedPackage(null)}
+        >
+          <button
+            className="absolute top-4 right-4 text-white p-2 rounded-full hover:bg-gray-800"
+            onClick={() => setSelectedPackage(null)}
+          >
+            <X className="w-8 h-8" />
+          </button>
+
+          {/* Lightbox Content */}
+          <div
+            className="relative max-w-4xl w-full max-h-[80vh]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={selectedPackage.gallery[selectedImageIdx].image}
+              alt={selectedPackage.gallery[selectedImageIdx].caption}
+              className="w-full h-full object-contain rounded-lg"
+            />
+
+            {/* Prev Button */}
+            <button
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-white p-2"
+              onClick={handlePrev}
+            >
+              <ChevronLeft className="w-8 h-8" />
+            </button>
+
+            {/* Next Button */}
+            <button
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-white p-2"
+              onClick={handleNext}
+            >
+              <ChevronRight className="w-8 h-8" />
+            </button>
+
+            {/* View Package Button */}
+            <Link
+              to={`/packages/${selectedPackage._id}`}
+              className="absolute bottom-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700"
+            >
+              View Package
+            </Link>
+
+            {/* Image Count */}
+            <div className="absolute bottom-4 right-4 bg-gray-900/70 text-white px-4 py-2 rounded-full text-sm font-semibold">
+              {selectedImageIdx + 1} of {selectedPackage.gallery.length}
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
-
-export default Gallery;

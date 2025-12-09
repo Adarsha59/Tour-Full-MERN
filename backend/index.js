@@ -4,6 +4,10 @@ import dotenv from "dotenv";
 import galleryRoute from "./routes/gallery-route.js";
 import blogRoute from "./routes/blog-route.js";
 import userRoute from "./routes/user-route.js";
+import websiteRoute from "./routes/website-routes.js";
+import packageRoute from "./routes/packageRoute.js";
+import packageCategoryRoutes from "./routes/packageCategoryRoutes.js";
+import videoRoutes from "./routes/packageVideoRoutes.js";
 import cors from "cors";
 const app = express();
 dotenv.config();
@@ -28,6 +32,10 @@ app.use(express.json());
 app.use("/gallery", galleryRoute);
 app.use("/blog", blogRoute);
 app.use("/user", userRoute);
+app.use("/website", websiteRoute);
+app.use("/packages", packageRoute);
+app.use("/categories", packageCategoryRoutes);
+app.use("/videos", videoRoutes);
 
 connectToServer();
 app.listen(port, () => {

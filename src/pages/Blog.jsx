@@ -24,7 +24,7 @@ function Blog() {
   };
 
   return (
-    <section id="blog" className="dark:bg-slate-200 text-white pt-36 pb-32">
+    <section id="blog" className=" pt-36 pb-32">
       <div className="container">
         <div className="w-full px-4">
           <div className="mx-auto mb-16 max-w-xl text-center">
