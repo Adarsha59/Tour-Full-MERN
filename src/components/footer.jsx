@@ -2,86 +2,81 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer className="dark:bg-slate-200 pt-24 pb-12">
-      <div className="max-w-6xl mx-auto px-4">
-        {/* TOP GRID */}
-        <div className="flex flex-wrap">
-          {/* COLUMN ONE */}
-          <div className="mb-12 w-full px-4 font-medium dark:text-slate-600 md:w-1/3 text-center md:text-left">
-            <h2 className="mb-5 text-4xl font-bold dark:text-black">
-              Trave tour
+    <footer className="pt-20  text-slate-200 dark:text-slate-800 transition-colors">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* MAIN GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 pb-16">
+          {/* BRAND */}
+          <div>
+            <h2 className="text-3xl font-extrabold mb-4 text-slate-100 dark:text-slate-900">
+              Top of the World Adventure
             </h2>
-            <h3 className="mb-2 text-xl font-bold">Adarsha Paudyal</h3>
-            <p>code.adarsha@gmail.com</p>
-            <p>Nepal</p>
-            <p>xyz</p>
+
+            <p className="text-sm">Thamel Marg, Kwabahal, Katmandú, Nepal </p>
+            <p className="text-sm mt-1">info@topoftheworldadv.com</p>
+            <p className="text-sm mt-1">+977 9841492029 (Janardan)</p>
+            <p className="text-sm mt-1"> +977 9860974753 (Shreeram)</p>
           </div>
 
-          {/* COLUMN TWO */}
-          <div className="mb-12 w-full px-4 md:w-1/3 text-center md:text-left">
-            <h3 className="mb-5 text-xl font-semibold dark:text-black">
-              Categories
+          {/* QUICK LINKS */}
+          <div>
+            <h3 className="text-lg font-bold mb-5 text-slate-100 dark:text-slate-900">
+              Enlaces Rápidos
             </h3>
-            <ul className="dark:text-slate-600 space-y-2">
-              <li>
-                <a href="/" className="text-base hover:text-primary">
-                  Travel
-                </a>
-              </li>
-              <li>
-                <a href="/" className="text-base hover:text-primary">
-                  Tours
-                </a>
-              </li>
-              <li>
-                <a href="/" className="text-base hover:text-primary">
-                  Holidays
-                </a>
-              </li>
+            <ul className="space-y-3 text-sm">
+              {["Inicio", "Sobre Nosotros", "Paquetes", "Blog", "Contacto"].map(
+                (item, i) => (
+                  <li key={i}>
+                    <a
+                      href={
+                        item === "Inicio"
+                          ? "/"
+                          : `/${item.toLowerCase().replace(" ", "")}`
+                      }
+                      className="hover:text-primary transition"
+                    >
+                      {item}
+                    </a>
+                  </li>
+                )
+              )}
             </ul>
           </div>
 
-          {/* COLUMN THREE */}
-          <div className="mb-12 w-full px-4 md:w-1/3 text-center md:text-left">
-            <h3 className="mb-5 text-xl font-semibold dark:text-black">
-              Links
+          {/* DESTINATIONS */}
+          <div>
+            <h3 className="text-lg font-bold mb-5 text-slate-100 dark:text-slate-900">
+              Destinos Principales
             </h3>
-            <ul className="dark:text-black space-y-2">
-              <li>
-                <a href="/" className="text-base hover:text-primary">
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="/about" className="text-base hover:text-primary">
-                  About
-                </a>
-              </li>
-              <li>
-                <a href="/gallery" className="text-base hover:text-primary">
-                  Gallery
-                </a>
-              </li>
-              <li>
-                <a href="/partner" className="text-base hover:text-primary">
-                  Partner
-                </a>
-              </li>
-              <li>
-                <a href="/blog" className="text-base hover:text-primary">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="/contact" className="text-base hover:text-primary">
-                  Contact
-                </a>
-              </li>
+            <ul className="space-y-3 text-sm">
+              <li>Región del Everest</li>
+              <li>Región de Annapurna</li>
+              <li>Valle de Langtang</li>
+              <li>Alto Mustang</li>
+              <li>Tíbet y Bután</li>
             </ul>
+          </div>
+
+          {/* CTA */}
+          <div>
+            <h3 className="text-lg font-bold mb-5 text-slate-100 dark:text-slate-900">
+              Viaja con Confianza
+            </h3>
+            <p className="text-sm mb-5">
+              Itinerarios personalizados, guías certificados, precios
+              transparentes y soporte completo desde el aeropuerto hasta la
+              cima.
+            </p>
+            <a
+              href="/contact"
+              className="inline-block bg-primary text-slate-900 font-semibold px-6 py-3 rounded-full hover:opacity-90 transition"
+            >
+              Planifica tu Viaje
+            </a>
           </div>
         </div>
 
-        {/* BOTTOM BAR */}
+        {/* SOCIAL BAR */}
         <div className="w-full border-t border-slate-300 pt-10">
           {/* SOCIAL ICONS CENTERED */}
           <div className="mb-5 flex items-center justify-center flex-wrap gap-3">
@@ -177,22 +172,9 @@ function Footer() {
           </div>
 
           {/* COPYRIGHT TEXT */}
-          <p className="text-center text-xs font-medium text-slate-500">
-            adarsha tour dot com <span className="text-pink-500">❤️</span>{" "}
-            Adarsha,{" "}
-            <a
-              href="https://tailwindcss.com"
-              target="_blank"
-              rel="noreferrer"
-              className="font-bold text-sky-500"
-            >
-              Tailwind CSS
-            </a>
-            .<br />
+          <p className="text-center text-xs font-extrabold text-slate-500">
+            © 2025, Top of the World Adventure Pvt. Ltd. .<br />
             <br />
-            All logos, trademarks, and copyrights used on this website are the
-            property of their respective owners. Use of these materials does not
-            imply endorsement.
           </p>
         </div>
       </div>

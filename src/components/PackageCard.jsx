@@ -7,7 +7,6 @@ export default function PackageCard({ data }) {
     <div
       className="
         group rounded-2xl overflow-hidden 
-       
         border border-gray-800 dark:border-gray-200
         shadow-md hover:shadow-2xl
         hover:-translate-y-1
@@ -29,13 +28,13 @@ export default function PackageCard({ data }) {
         <div className="absolute top-3 left-3 flex flex-col gap-2">
           {p.key_facts?.trip_grade && (
             <span className="bg-black/60 text-white text-xs px-3 py-1 rounded-full font-semibold">
-              Grade {p.key_facts.trip_grade}
+              Nivel {p.key_facts.trip_grade}
             </span>
           )}
 
           {p.key_facts?.duration && (
             <span className="bg-primary text-xs px-3 py-1 rounded-full font-semibold text-white shadow">
-              {p.key_facts.duration} Days
+              {p.key_facts.duration} Días
             </span>
           )}
         </div>
@@ -67,7 +66,7 @@ export default function PackageCard({ data }) {
               transition
             "
           >
-            View Details
+            Ver Detalles
           </Link>
         </div>
       </div>

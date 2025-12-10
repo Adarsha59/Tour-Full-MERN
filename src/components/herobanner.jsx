@@ -1,44 +1,64 @@
 import React from "react";
 import { useAuth } from "../context/Auth";
+import { ArrowRight } from "lucide-react";
 
 const Herobanner = ({ title, subtitle, cta, image }) => {
-  const [isLoggedIn] = useAuth(); // not isLoggedOut
-  const username = isLoggedIn?.name || "Stranger";
+  const [isLoggedIn] = useAuth();
+  const username = isLoggedIn?.name || "";
 
   return (
-    <section className="  pt-28 pb-28 bg-gradient-to-br from-primary to-purple-700 text-white dark:text-black dark:bg-slate-100">
-      <div className="max-w-7xl mx-auto px-4 flex flex-col-reverse lg:flex-row items-center justify-between gap-12">
-        {/* LEFT SIDE */}
-        <div className="lg:w-1/2 text-center lg:text-left">
-          <h1 className="text-4xl lg:text-5xl font-extrabold leading-tight mb-4">
-            {title || `Hello,`}{" "}
-            <span className="text-yellow-300">{username}</span>
+    <section className="relative w-full min-h-screen flex items-center overflow-hidden">
+      {/* ✅ Background Image */}
+
+      {/* ✅ Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+        {/* LEFT TEXT */}
+        <div className="">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-tight mb-6">
+            {title || "Explora Nepal con Nosotros"}
+            {username && (
+              <span className="block text-primary mt-2">
+                Bienvenido, {username}
+              </span>
+            )}
           </h1>
-          <h2 className="text-xl font-semibold text-white dark:text-gray-900 mb-6">
-            {subtitle || "Travel & Vacation with us"}
-            <span className="text-yellow-200 dark:text-primary">Vacation</span>
+
+          <h2 className="text-xl md:text-2xl font-semibold mb-6  max-w-2xl">
+            {subtitle || "Tu socio de confianza para trekking, tours y vuelos"}
           </h2>
-          <p className="mb-8 leading-relaxed text-white dark:text-gray-700 max-w-lg mx-auto lg:mx-0">
-            {cta ||
-              "Book your next trip with confidence and discover Nepal with us."}
-            <strong> adarsha-tour.com</strong> bata hai ta!
+
+          <p className="text-base md:text-lg  mb-10 max-w-2xl">
+            Viajes auténticos por el Himalaya, aventuras culturales,
+            helicópteros, safaris y experiencias diseñadas por expertos locales
+            en Nepal.
           </p>
 
-          <a
-            href="#about"
-            className="inline-block text-primary font-semibold px-6 py-3 rounded-full shadow-md hover:opacity-90 hover:shadow-lg transition"
-          >
-            Book Now
-          </a>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <a
+              href="#packages"
+              className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-primary text-yellow-600 font-extrabold hover:opacity-90 transition"
+            >
+              {cta || "Reservar ahora"}
+              <ArrowRight className="w-5 h-5" />
+            </a>
+
+            <a
+              href="#gallery"
+              className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full border border-white  font-semibold hover:bg-white hover:text-black transition"
+            >
+              Ver Galería
+            </a>
+          </div>
         </div>
 
-        {/* RIGHT SIDE IMAGE */}
-        <div className="lg:w-1/2">
+        {/* RIGHT FEATURE CARD */}
+        {/* RIGHT SIDE BRAND GIF */}
+        <div className="hidden lg:flex justify-center">
           <div className="relative">
             <img
               src="dist/img/logoo.gif"
-              alt="Animated Nepal Travel"
-              className="mx-auto w-full max-w-sm drop-shadow-xl rounded-2xl"
+              alt="Top of the World Adventure Logo"
+              className="w-[360px] xl:w-[420px] drop-shadow-2xl rounded-2xl"
             />
           </div>
         </div>

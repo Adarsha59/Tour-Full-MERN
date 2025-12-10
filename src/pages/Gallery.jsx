@@ -3,24 +3,18 @@ import { getPackagesApi } from "../api/packageApi";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
-export default function Gallery({
-  galleryTitle,
-  gallerySubtitle,
-  galleryDesc,
-  limit,
-}) {
-  const title = galleryTitle || "Photo Gallery";
+export default function Gallery({ galleryTitle, galleryDesc, limit }) {
+  const title = galleryTitle || "Galería de Fotos";
   const subtitle =
-    gallerySubtitle ||
-    "Discover the beauty of Nepal through our curated images";
+    "Descubre la belleza de Nepal a través de nuestras imágenes seleccionadas";
   const description =
     galleryDesc ||
-    "A collection of moments captured during our adventures across Nepal";
+    "Descubre la belleza de Nepal a través de nuestras imágenes seleccionadas";
 
   const [packages, setPackages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  console.log("des", galleryDesc);
   const [selectedPackage, setSelectedPackage] = useState(null);
   const [selectedImageIdx, setSelectedImageIdx] = useState(0);
 

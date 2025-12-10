@@ -1,17 +1,17 @@
 import React from "react";
 
-function Partner() {
+function Partner({ title, subtitle }) {
   return (
     <section id="partner" className="py-24">
       <div className="max-w-7xl mx-auto px-4">
         {/* Main Header */}
         <div className="text-center mb-20">
           <h2 className="text-4xl sm:text-5xl font-extrabold mb-4">
-            Confianza y Reconocimiento
+            {title || " Confianza y Reconocimiento "}
           </h2>
           <p className="text-lg opacity-80 max-w-2xl mx-auto">
-            Afiliaciones oficiales de turismo y reseñas verificadas a nivel
-            mundial
+            {subtitle ||
+              "Afiliaciones oficiales de turismo y reseñas verificadas a nivel mundial"}
           </p>
         </div>
 

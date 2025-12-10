@@ -7,9 +7,13 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="p-2 rounded border border-gray-400 dark:border-gray-600"
+      className="p-3 rounded-full border border-white/20 dark:border-black/20 bg-white/5 dark:bg-black/5 backdrop-blur-md hover:scale-110 transition-all shadow-lg"
     >
-      {theme === "light" ? <FiMoon size={20} /> : <FiSun size={20} />}
+      {theme === "light" ? (
+        <FiMoon size={18} className="text-amber-400" />
+      ) : (
+        <FiSun size={18} className="text-amber-400" />
+      )}
     </button>
   );
 }

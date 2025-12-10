@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import { getVideosApi, getVideosByPackageApi } from "../api/videoApi";
 
-export default function PackageVideoCarousel({ packageId, limit }) {
+export default function PackageVideoCarousel({
+  packageId,
+  limit,
+  title,
+  subtitle,
+}) {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeVideo, setActiveVideo] = useState(null);
@@ -45,11 +50,11 @@ export default function PackageVideoCarousel({ packageId, limit }) {
       <section id="gallery" className=" py-24">
         <div className="text-center mb-16">
           <h4 className="text-lg font-semibold text-primary mb-2 uppercase tracking-widest">
-            Videos
+            {title || "Videos"}
           </h4>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4">
-            Mira Nuestras Aventuras Reales por Todo Nepal
+            {subtitle || "Mira Nuestras Aventuras Reales por Todo Nepal"}
           </h2>
 
           <p className="text-base md:text-lg font-medium max-w-2xl mx-auto">

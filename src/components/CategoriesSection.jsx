@@ -28,8 +28,8 @@ export default function CategoriesSection({ title, subtitle }) {
           </h2>
 
           <p className="text-base md:text-lg font-medium max-w-2xl mx-auto opacity-80 text-gray-300 dark:text-gray-700">
-            Choose your dream destination and discover hand crafted travel
-            experiences tailored for adventure, culture, and nature lovers.
+            Elige tu destino soñado y descubre experiencias de viaje hechas a
+            medida para amantes de la aventura, la cultura y la naturaleza.
           </p>
         </div>
 
@@ -75,7 +75,7 @@ shadow-lg
 group-hover:bg-black/50 dark:group-hover:bg-white/50 
 transition"
                     >
-                      View Packages
+                      Ver Paquetes
                     </span>
                   </div>
                 </div>

@@ -9,7 +9,7 @@ const TourBooking = () => {
   };
 
   return (
-    <div className=" flex items-center justify-center   ">
+    <div className=" flex items-center justify-center  py-24  ">
       <div className="bg-yellow bg-opacity-10 bg-gradient-to-r from-blue-500 to-green backdrop-filter backdrop-blur-lg p-6 rounded-lg shadow-lg flex space-x-4">
         <div>
           <label className="block text-white mb-2" htmlFor="date">
