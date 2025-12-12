@@ -46,7 +46,6 @@ function Home() {
         image={content.heroImage}
       /> */}
       <Hero />
-
       {/* BOOKING */}
       <TourBooking />
 
@@ -58,7 +57,7 @@ function Home() {
 
       {/* VIDEOS */}
       <PackageVideoCarousel
-        limit={2}
+        limit={6}
         title={content.videoTitle}
         subtitle={content.videoSubtitle}
       />
@@ -67,14 +66,14 @@ function Home() {
       <PackagesSection
         title={content.packagesTitle}
         subtitle={content.packagesSubtitle}
-        limit={2}
+        limit={6}
       />
 
       {/* GALLERY */}
       <Gallery
         galleryTitle={content.galleryTitle}
         galleryDesc={content.galleryDesc}
-        limit={3}
+        limit={6}
       />
 
       {/* PARTNER */}

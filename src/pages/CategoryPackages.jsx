@@ -16,7 +16,7 @@ export default function CategoryPackages() {
       try {
         const res = await getPackagesByCategoryApi(id);
         const data = res;
-        console.log("data", data);
+        console.log("cat", data);
 
         setPackages(res.data.data || []);
       } finally {

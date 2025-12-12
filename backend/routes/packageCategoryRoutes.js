@@ -7,12 +7,23 @@ import {
   deleteCategory,
 } from "../controllers/packageCategoryController.js";
 
+import { requireAuth } from "../middleware/auth.js";
+
 const router = express.Router();
 
-router.post("/create", createCategory);
+/* ADMIN ONLY */
+router.post("/create", requireAuth, createCategory);
+
+/* PUBLIC */
 router.get("/", getAllCategories);
+
+/* PUBLIC */
 router.get("/:id", getSingleCategory);
-router.put("/:id", updateCategory);
-router.delete("/:id", deleteCategory);
+
+/* ADMIN ONLY */
+router.put("/:id", requireAuth, updateCategory);
+
+/* ADMIN ONLY */
+router.delete("/:id", requireAuth, deleteCategory);
 
 export default router;

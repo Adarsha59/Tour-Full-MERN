@@ -4,7 +4,13 @@ import {
   ChevronRight,
   ArrowRight,
   DollarSign,
+  MapPin,
+  Users,
+  Clock,
+  Zap,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { getPackagesApi } from "../api/packageApi";
 
 const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -12,231 +18,43 @@ const Hero = () => {
   const [direction, setDirection] = useState("next");
   const [packages, setPackages] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [hoveredCard, setHoveredCard] = useState(null);
+  const navigate = useNavigate();
 
-  // Fetch packages from your backend
   useEffect(() => {
     const fetchPackages = async () => {
       try {
-        // Replace with your actual API endpoint
-        // const res = await fetch('/api/packages?limit=5');
-        // const data = await res.json();
-        // setPackages(data);
+        setLoading(true);
+        const response = await getPackagesApi();
+        let raw = response.data;
 
-        // Mock data for demonstration
-        setPackages([
-          {
-            _id: "1",
-            title: "Yosemite National Park",
-            category: "Sierra Nevada",
-            banner_image:
-              "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1400&h=900&fit=crop",
-            key_facts: {
-              duration: "7 days",
-              country: "United States",
-              group_size: "2-6 people",
-              activities: "Hiking, Photography",
-            },
-            price_section: {
-              price_per_person: {
-                current_price: 2499,
-                currency: "USD",
-              },
-            },
-            gallery: [
-              {
-                caption: "Los Angeles Beach",
-                image:
-                  "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&h=600&fit=crop",
-              },
-              {
-                caption: "Girême Valley",
-                image:
-                  "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=600&fit=crop",
-              },
-              {
-                caption: "Saint Antonie",
-                image:
-                  "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=500&h=600&fit=crop",
-              },
-              {
-                caption: "Nagano Prefecture",
-                image:
-                  "https://images.unsplash.com/photo-1540959375944-7049f642e9a0?w=500&h=600&fit=crop",
-              },
-            ],
-          },
-          {
-            _id: "2",
-            title: "Maui Explorer",
-            category: "Hawaii",
-            banner_image:
-              "https://images.unsplash.com/photo-1537225228614-b4fad34a0b19?w=1400&h=900&fit=crop",
-            key_facts: {
-              duration: "5 days",
-              country: "United States",
-              group_size: "1-4 people",
-              activities: "Beach, Snorkeling",
-            },
-            price_section: {
-              price_per_person: {
-                current_price: 1899,
-                currency: "USD",
-              },
-            },
-            gallery: [
-              {
-                caption: "Waikiki Beach",
-                image:
-                  "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&h=600&fit=crop",
-              },
-              {
-                caption: "Haleakala",
-                image:
-                  "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=600&fit=crop",
-              },
-              {
-                caption: "Road to Hana",
-                image:
-                  "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=500&h=600&fit=crop",
-              },
-              {
-                caption: "Iao Valley",
-                image:
-                  "https://images.unsplash.com/photo-1540959375944-7049f642e9a0?w=500&h=600&fit=crop",
-              },
-            ],
-          },
-          {
-            _id: "3",
-            title: "Northern Lights Quest",
-            category: "Iceland",
-            banner_image:
-              "https://images.unsplash.com/photo-1579033100900-cb5ea28aa75f?w=1400&h=900&fit=crop",
-            key_facts: {
-              duration: "8 days",
-              country: "Iceland",
-              group_size: "2-10 people",
-              activities: "Aurora Viewing, Ice Hiking",
-            },
-            price_section: {
-              price_per_person: {
-                current_price: 3299,
-                currency: "USD",
-              },
-            },
-            gallery: [
-              {
-                caption: "Reykjavik",
-                image:
-                  "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&h=600&fit=crop",
-              },
-              {
-                caption: "Geysir Valley",
-                image:
-                  "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=600&fit=crop",
-              },
-              {
-                caption: "Skaftafell",
-                image:
-                  "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=500&h=600&fit=crop",
-              },
-              {
-                caption: "Jökulsárlón",
-                image:
-                  "https://images.unsplash.com/photo-1540959375944-7049f642e9a0?w=500&h=600&fit=crop",
-              },
-            ],
-          },
-          {
-            _id: "4",
-            title: "Kyoto Temples",
-            category: "Japan",
-            banner_image:
-              "https://images.unsplash.com/photo-1540959375944-7049f642e9a0?w=1400&h=900&fit=crop",
-            key_facts: {
-              duration: "10 days",
-              country: "Japan",
-              group_size: "1-6 people",
-              activities: "Culture, Photography",
-            },
-            price_section: {
-              price_per_person: {
-                current_price: 2799,
-                currency: "USD",
-              },
-            },
-            gallery: [
-              {
-                caption: "Fushimi Inari",
-                image:
-                  "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&h=600&fit=crop",
-              },
-              {
-                caption: "Arashiyama",
-                image:
-                  "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=600&fit=crop",
-              },
-              {
-                caption: "Kinkaku-ji",
-                image:
-                  "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=500&h=600&fit=crop",
-              },
-              {
-                caption: "Gion District",
-                image:
-                  "https://images.unsplash.com/photo-1540959375944-7049f642e9a0?w=500&h=600&fit=crop",
-              },
-            ],
-          },
-          {
-            _id: "5",
-            title: "Desert Safari",
-            category: "Dubai",
-            banner_image:
-              "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1400&h=900&fit=crop",
-            key_facts: {
-              duration: "6 days",
-              country: "UAE",
-              group_size: "2-8 people",
-              activities: "Safari, Desert Activities",
-            },
-            price_section: {
-              price_per_person: {
-                current_price: 2199,
-                currency: "USD",
-              },
-            },
-            gallery: [
-              {
-                caption: "Desert Dunes",
-                image:
-                  "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&h=600&fit=crop",
-              },
-              {
-                caption: "Abu Dhabi",
-                image:
-                  "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=600&fit=crop",
-              },
-              {
-                caption: "Marina Beach",
-                image:
-                  "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=500&h=600&fit=crop",
-              },
-              {
-                caption: "Gold Souk",
-                image:
-                  "https://images.unsplash.com/photo-1540959375944-7049f642e9a0?w=500&h=600&fit=crop",
-              },
-            ],
-          },
-        ]);
-        setLoading(false);
+        if (!Array.isArray(raw)) {
+          if (Array.isArray(raw.packages)) raw = raw.packages;
+          else if (Array.isArray(raw.data)) raw = raw.data;
+          else {
+            console.error("El servidor no devolvió un arreglo:", raw);
+            raw = [];
+          }
+        }
+
+        let formatted = raw.map((item) => ({
+          ...item,
+          category_title: item.category?.title || "",
+        }));
+
+        const withBanner = formatted.filter(
+          (p) => p.banner_image && p.banner_image.trim() !== ""
+        );
+        if (withBanner.length > 0) {
+          formatted = withBanner;
+        }
+        setPackages(formatted);
       } catch (error) {
-        console.error("Failed to fetch packages:", error);
+        console.error("Error al obtener paquetes:", error);
+      } finally {
         setLoading(false);
       }
     };
-
     fetchPackages();
   }, []);
 
@@ -250,277 +68,303 @@ const Hero = () => {
   }, [autoPlay, packages.length]);
 
   const handlePrev = () => {
+    if (packages.length === 0) return;
     setDirection("prev");
     setCurrentIndex((prev) => (prev - 1 + packages.length) % packages.length);
     setAutoPlay(false);
   };
 
   const handleNext = () => {
+    if (packages.length === 0) return;
     setDirection("next");
     setCurrentIndex((prev) => (prev + 1) % packages.length);
     setAutoPlay(false);
   };
 
+  const handleCardClick = (idx) => {
+    setDirection(idx > currentIndex ? "next" : "prev");
+    setCurrentIndex(idx);
+    setAutoPlay(false);
+  };
+
+  const getRelatedPackages = () => {
+    if (packages.length <= 1) return [];
+
+    const related = [];
+    for (let i = 1; i <= 4 && i < packages.length; i++) {
+      related.push(packages[(currentIndex + i) % packages.length]);
+    }
+    return related;
+  };
+
+  const handleExplore = (packageId) => {
+    navigate(`/packages/${packageId}`);
+  };
+
   if (loading || packages.length === 0) {
     return (
-      <div className="w-full h-screen flex items-center justify-center bg-gradient-to-b from-gray-900 to-gray-800">
+      <div className="w-full h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-amber-400 mx-auto mb-4"></div>
-          <p className="text-white text-lg">Loading premium packages...</p>
+          <div className="inline-block mb-4 p-3 rounded-full bg-amber-500/20 backdrop-blur">
+            <div className="w-8 h-8 rounded-full border-2 border-amber-400 border-t-transparent animate-spin"></div>
+          </div>
+          <p className="text-white text-lg font-light tracking-wide">
+            Preparando su próxima experiencia premium...
+          </p>
         </div>
       </div>
     );
   }
 
   const currentPackage = packages[currentIndex];
+  const duration = currentPackage.key_facts?.duration || "Duración del viaje";
+  const groupSize = currentPackage.key_facts?.group_size || "Grupo flexible";
+  const country = currentPackage.key_facts?.country || "Destino";
+  const activities = currentPackage.key_facts?.activities || "Aventura";
+  const currentPrice =
+    currentPackage.price_section?.price_per_person?.current_price || 0;
+  const currency =
+    currentPackage.price_section?.price_per_person?.currency || "USD";
+  const relatedPackages = getRelatedPackages();
+  const heroImage =
+    currentPackage.banner_image && currentPackage.banner_image.trim() !== ""
+      ? currentPackage.banner_image
+      : "https://images.unsplash.com/photo-1500930855697-b586d89ba3ee?w=1600&h=900&fit=crop";
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-black">
-      {/* Background */}
+    <div className="relative w-full min-h-screen overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      </div>
+
       <div className="absolute inset-0 z-0">
         <img
-          src={currentPackage.banner_image}
-          alt="Hero background"
-          className="w-full h-full object-cover transition-all duration-1200 ease-out"
+          src={heroImage}
+          alt="Hero"
+          className="w-full h-full object-cover opacity-40"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/60 to-transparent"></div>
       </div>
 
-      {/* Content Container */}
-      <div className="relative z-10 h-full w-full flex items-center">
-        {/* Left Section */}
-        <div className="w-full lg:w-1/2 px-8 md:px-16 lg:px-20 space-y-10">
-          {/* Location Badge */}
-          <div
-            className={`inline-block transition-all duration-700 transform ${
-              direction === "next"
-                ? "animate-slideInLeft"
-                : "animate-slideInRight"
-            }`}
-          >
-            <p className="text-amber-400 text-xs md:text-sm font-light tracking-widest uppercase">
-              {currentPackage.category}
+      <div className="relative z-10 w-full min-h-screen flex items-center">
+        <div className="w-full flex flex-col md:flex-row items-stretch gap-8 md:gap-12 px-4 sm:px-8 lg:px-16 py-12 md:py-0">
+          {/* LEFT */}
+          <div className="w-full md:w-1/2 flex flex-col justify-center space-y-8">
+            <div className="inline-block w-fit">
+              <div className="flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-400/25 to-amber-500/15 border border-amber-400/60 backdrop-blur-md hover:from-amber-400/35 hover:to-amber-500/25 transition-all duration-300">
+                <MapPin className="w-4 sm:w-5 h-4 sm:h-5 text-amber-400 flex-shrink-0" />
+                <span className="text-sm sm:text-base font-semibold text-amber-300">
+                  {currentPackage.category_title}
+                </span>
+              </div>
+            </div>
+
+            <div>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight tracking-tight drop-shadow-lg">
+                {currentPackage.title}
+              </h1>
+              <div className="w-24 h-1.5 bg-gradient-to-r from-amber-400 via-amber-500 to-orange-500 rounded-full shadow-lg shadow-amber-500/50"></div>
+            </div>
+
+            <p className="text-base sm:text-lg text-white/80 max-w-xl leading-relaxed">
+              Emprenda una experiencia inolvidable a través de paisajes
+              fascinantes y culturas auténticas.
             </p>
-          </div>
 
-          {/* Title */}
-          <div
-            className={`transition-all duration-700 transform ${
-              direction === "next"
-                ? "animate-slideInLeft"
-                : "animate-slideInRight"
-            }`}
-            style={{ animationDelay: "0.1s" }}
-          >
-            <h1 className="text-5xl md:text-6xl lg:text-8xl font-bold text-white leading-tight max-w-lg">
-              {currentPackage.title}
-            </h1>
-          </div>
-
-          {/* Key Facts Grid */}
-          <div
-            className={`transition-all duration-700 transform ${
-              direction === "next"
-                ? "animate-slideInLeft"
-                : "animate-slideInRight"
-            }`}
-            style={{ animationDelay: "0.2s" }}
-          >
-            <div className="grid grid-cols-2 gap-4 max-w-md">
-              <div className="space-y-1">
-                <p className="text-white/50 text-xs font-light uppercase tracking-wide">
-                  Duration
-                </p>
-                <p className="text-white text-sm font-semibold">
-                  {currentPackage.key_facts.duration}
-                </p>
-              </div>
-              <div className="space-y-1">
-                <p className="text-white/50 text-xs font-light uppercase tracking-wide">
-                  Group Size
-                </p>
-                <p className="text-white text-sm font-semibold">
-                  {currentPackage.key_facts.group_size}
-                </p>
-              </div>
-              <div className="space-y-1">
-                <p className="text-white/50 text-xs font-light uppercase tracking-wide">
-                  Location
-                </p>
-                <p className="text-white text-sm font-semibold">
-                  {currentPackage.key_facts.country}
-                </p>
-              </div>
-              <div className="space-y-1">
-                <p className="text-white/50 text-xs font-light uppercase tracking-wide">
-                  Activities
-                </p>
-                <p className="text-white text-sm font-semibold">
-                  {currentPackage.key_facts.activities}
-                </p>
-              </div>
+            <div className="grid grid-cols-2 gap-4 pt-4">
+              <Fact icon={Clock} label="Duración" value={duration} />
+              <Fact icon={Users} label="Tamaño del grupo" value={groupSize} />
+              <Fact icon={MapPin} label="País" value={country} />
+              <Fact icon={Zap} label="Actividades" value={activities} />
             </div>
-          </div>
 
-          {/* Price */}
-          <div
-            className={`transition-all duration-700 transform ${
-              direction === "next"
-                ? "animate-slideInLeft"
-                : "animate-slideInRight"
-            }`}
-            style={{ animationDelay: "0.3s" }}
-          >
-            <div className="flex items-center gap-3">
-              <DollarSign className="text-amber-400" size={28} />
-              <div>
-                <p className="text-white/50 text-xs font-light">
-                  Starting from
-                </p>
-                <p className="text-white text-3xl font-bold">
-                  {currentPackage.price_section.price_per_person.current_price}
-                  <span className="text-lg text-white/60"> per person</span>
-                </p>
+            <div className="bg-gradient-to-br from-amber-500/30 to-amber-600/20 border border-amber-400/40 rounded-2xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl shadow-amber-500/20">
+              <p className="text-white/70 text-sm sm:text-base font-semibold mb-3 uppercase tracking-wider">
+                Precio desde
+              </p>
+              <div className="flex items-baseline gap-3">
+                <span className="text-4xl sm:text-5xl font-black text-amber-300">
+                  {currency} {currentPrice}
+                </span>
+                <span className="text-white/60 text-base sm:text-lg">
+                  por persona
+                </span>
               </div>
-            </div>
-          </div>
-
-          {/* Button */}
-          <div
-            className={`transition-all duration-700 transform ${
-              direction === "next"
-                ? "animate-slideInLeft"
-                : "animate-slideInRight"
-            }`}
-            style={{ animationDelay: "0.4s" }}
-          >
-            <button className="group px-8 py-4 bg-gradient-to-r from-amber-400 to-amber-500 text-black font-bold rounded-lg hover:shadow-2xl hover:shadow-amber-400/50 transition-all duration-300 flex items-center gap-3 hover:-translate-y-1">
-              Explore Package
-              <ArrowRight
-                size={20}
-                className="group-hover:translate-x-2 transition-transform"
-              />
-            </button>
-          </div>
-
-          {/* Controls */}
-          <div
-            className={`flex items-center gap-6 pt-4 transition-all duration-700 ${
-              direction === "next"
-                ? "animate-slideInLeft"
-                : "animate-slideInRight"
-            }`}
-            style={{ animationDelay: "0.5s" }}
-          >
-            <button
-              onClick={handlePrev}
-              onMouseEnter={() => setAutoPlay(false)}
-              onMouseLeave={() => setAutoPlay(true)}
-              className="p-3 rounded-full border border-white/30 text-white hover:border-amber-400 hover:bg-white/5 transition-all duration-300 hover:scale-110"
-            >
-              <ChevronLeft size={24} />
-            </button>
-
-            <div className="flex-1 max-w-xs h-1.5 bg-white/10 rounded-full overflow-hidden">
-              <div
-                className="h-full bg-amber-400 transition-all duration-700 rounded-full shadow-lg shadow-amber-400/50"
-                style={{
-                  width: `${((currentIndex + 1) / packages.length) * 100}%`,
-                }}
-              />
             </div>
 
             <button
-              onClick={handleNext}
-              onMouseEnter={() => setAutoPlay(false)}
-              onMouseLeave={() => setAutoPlay(true)}
-              className="p-3 rounded-full border border-white/30 text-white hover:border-amber-400 hover:bg-white/5 transition-all duration-300 hover:scale-110"
+              onClick={() => handleExplore(currentPackage._id)}
+              className="group relative w-full sm:w-fit px-8 sm:px-12 py-4 sm:py-5 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-black text-lg sm:text-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/60 hover:scale-110 active:scale-95"
             >
-              <ChevronRight size={24} />
+              <span className="relative flex items-center justify-center gap-3">
+                Reserve su aventura
+                <ArrowRight className="w-5 sm:w-6 h-5 sm:h-6 group-hover:translate-x-2 transition-transform" />
+              </span>
             </button>
           </div>
-        </div>
 
-        {/* Right Section - Card Carousel */}
-        <div className="hidden lg:flex w-1/2 items-center justify-center px-12">
-          <div className="relative h-full flex items-center justify-center gap-8">
-            {currentPackage.gallery.map((galleryItem, idx) => {
-              const isActive = idx === 0;
+          {/* RIGHT CARDS */}
+          <div className="w-full md:w-1/2 flex items-center justify-center py-12 md:py-0">
+            <div className="relative w-full max-w-md md:max-w-lg h-96 md:h-[580px] perspective">
+              {relatedPackages.map((pkg, idx) => {
+                const isActive = idx === 0;
+                const isHovered = hoveredCard === idx;
+                const pkgImage =
+                  pkg.banner_image && pkg.banner_image.trim() !== ""
+                    ? pkg.banner_image
+                    : heroImage;
 
-              return (
-                <div
-                  key={idx}
-                  className="relative flex-shrink-0"
-                  style={{
-                    animation: `cardSlideIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) ${
-                      idx * 80
-                    }ms forwards`,
-                    opacity: 0,
-                  }}
-                >
-                  <style>{`
-                    @keyframes cardSlideIn {
-                      from {
-                        opacity: 0;
-                        transform: translateY(80px) scale(0.85);
-                      }
-                      to {
-                        opacity: 1;
-                        transform: translateY(0) scale(1);
-                      }
-                    }
-                  `}</style>
+                let zIndex = 0;
+                let scale = 0.82;
+                let opacity = 0.55;
+                let translateY = 0;
 
+                if (isActive) {
+                  zIndex = 50;
+                  scale = 1;
+                  opacity = 1;
+                  translateY = 0;
+                } else if (idx === 1) {
+                  zIndex = 40;
+                  scale = 0.88;
+                  opacity = 0.7;
+                  translateY = 32;
+                } else if (idx === 2) {
+                  zIndex = 30;
+                  scale = 0.78;
+                  opacity = 0.45;
+                  translateY = 64;
+                } else {
+                  zIndex = 20;
+                  scale = 0.7;
+                  opacity = 0.25;
+                  translateY = 96;
+                }
+
+                return (
                   <div
-                    className={`relative rounded-3xl overflow-hidden transition-all duration-500 group cursor-pointer ${
-                      isActive
-                        ? "w-72 h-96 ring-3 ring-amber-400 shadow-2xl shadow-amber-400/50 z-30"
-                        : idx === 1
-                        ? "w-72 h-96 opacity-60 hover:opacity-75 z-20 shadow-xl shadow-black/40"
-                        : "w-72 h-96 opacity-35 hover:opacity-50 z-10 shadow-lg shadow-black/30"
-                    } hover:-translate-y-4 transition-transform`}
+                    key={idx}
+                    onClick={() =>
+                      handleCardClick(
+                        (currentIndex + idx + 1) % packages.length
+                      )
+                    }
+                    onMouseEnter={() => setHoveredCard(idx)}
+                    onMouseLeave={() => setHoveredCard(null)}
+                    className="absolute inset-x-0 top-0 w-full transition-all duration-500 cursor-pointer"
+                    style={{
+                      zIndex,
+                      transform: `scale(${scale}) translateY(${translateY}px)`,
+                      opacity: isHovered ? 1 : opacity,
+                    }}
                   >
-                    <img
-                      src={galleryItem.image}
-                      alt={galleryItem.caption}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
+                    <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl border-2 border-white/20 hover:border-amber-400/60 transition-all duration-300">
+                      <img
+                        src={pkgImage}
+                        alt={pkg.title}
+                        className="w-full h-full object-cover"
+                      />
 
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/40 to-transparent"></div>
 
-                    <div className="absolute inset-0 flex flex-col justify-between p-8">
-                      <span className="text-amber-400 text-xs font-light tracking-widest uppercase">
-                        Featured
-                      </span>
-                      <h3 className="text-white font-bold text-2xl leading-tight">
-                        {galleryItem.caption}
-                      </h3>
+                      <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-8 md:p-10 text-white">
+                        {isActive && (
+                          <>
+                            <div className="mb-5 inline-block">
+                              <span className="px-4 py-2 rounded-full bg-gradient-to-r from-amber-400/30 to-amber-500/20 border border-amber-400/70 text-amber-200 text-sm font-bold backdrop-blur-md">
+                                Destino destacado
+                              </span>
+                            </div>
+
+                            <h3 className="text-3xl sm:text-4xl md:text-5xl font-black mb-3 line-clamp12 drop-shadow-lg">
+                              {pkg.title}
+                            </h3>
+
+                            <p className="text-white/80 text-base sm:text-lg mb-8 font-medium">
+                              {pkg.category_title}
+                            </p>
+
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleExplore(pkg._id);
+                              }}
+                              className="group w-full flex items-center justify-center gap-3 px-6 py-4 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 hover:shadow-xl hover:shadow-amber-500/50 font-bold text-lg transition-all duration-300 hover:scale-105 active:scale-95"
+                            >
+                              Explorar ahora
+                              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                            </button>
+                          </>
+                        )}
+                      </div>
+
+                      {isActive && (
+                        <>
+                          <div className="absolute inset-0 rounded-3xl border-2 border-amber-400 opacity-0 animate-pulse pointer-events-none"></div>
+                          <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-amber-400 to-amber-500 opacity-0 group-hover:opacity-10 blur-xl transition-all duration-300 pointer-events-none"></div>
+                        </>
+                      )}
                     </div>
-
-                    {isActive && (
-                      <div className="absolute top-8 right-8 w-3 h-3 bg-amber-400 rounded-full animate-pulse shadow-lg shadow-amber-400/70" />
-                    )}
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Counter */}
-      <div className="absolute bottom-8 right-8">
-        <div className="text-right">
-          <div className="text-6xl font-bold text-white/20 leading-none">
-            {String(currentIndex + 1).padStart(2, "0")}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col sm:flex-row items-center gap-6 z-20">
+        <div className="px-8 py-4 rounded-full bg-white/10 border border-white/20 backdrop-blur-xl shadow-lg">
+          <div className="flex items-center gap-4">
+            <span className="text-3xl font-black text-amber-400">
+              {String(currentIndex + 1).padStart(2, "0")}
+            </span>
+            <div className="w-px h-8 bg-white/30"></div>
+            <span className="text-lg text-white/80 font-semibold">
+              {String(packages.length).padStart(2, "0")}
+            </span>
           </div>
-          <p className="text-white/40 text-xs mt-2">
-            of {String(packages.length).padStart(2, "0")}
-          </p>
+        </div>
+
+        <div className="flex gap-4">
+          <button
+            onClick={handlePrev}
+            onMouseEnter={() => setAutoPlay(false)}
+            onMouseLeave={() => setAutoPlay(true)}
+            className="p-4 rounded-full border-2 border-amber-400/60 text-amber-400 hover:bg-amber-400 hover:text-slate-950 backdrop-blur-xl transition-all duration-300 hover:scale-110 active:scale-95 shadow-lg hover:shadow-amber-400/50"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+
+          <button
+            onClick={handleNext}
+            onMouseEnter={() => setAutoPlay(false)}
+            onMouseLeave={() => setAutoPlay(true)}
+            className="p-4 rounded-full border-2 border-amber-400/60 text-amber-400 hover:bg-amber-400 hover:text-slate-950 backdrop-blur-xl transition-all duration-300 hover:scale-110 active:scale-95 shadow-lg hover:shadow-amber-400/50"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
         </div>
       </div>
     </div>
   );
 };
+
+const Fact = ({ icon: Icon, label, value }) => (
+  <div className="group">
+    <div className="flex items-start gap-3 p-4 sm:p-5 rounded-xl bg-white/8 border border-white/15 backdrop-blur-md hover:bg-white/15 hover:border-amber-400/50 transition-all duration-300">
+      <Icon className="w-5 sm:w-6 h-5 sm:h-6 text-amber-400 mt-0.5 flex-shrink-0" />
+      <div className="flex-1 min-w-0">
+        <p className="text-white/60 text-xs sm:text-sm font-bold mb-1 uppercase tracking-wide">
+          {label}
+        </p>
+        <p className="text-white font-bold text-sm sm:text-base truncate">
+          {value}
+        </p>
+      </div>
+    </div>
+  </div>
+);
 
 export default Hero;

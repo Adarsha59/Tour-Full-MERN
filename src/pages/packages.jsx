@@ -19,7 +19,6 @@ export default function Packages() {
         const res = search
           ? await powerfulSearchPackagesApi(search)
           : await getPackagesApi();
-        console.log("search", res.data.data);
         setPackages(res.data.data || []);
       } finally {
         setLoading(false);

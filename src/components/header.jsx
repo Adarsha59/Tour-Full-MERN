@@ -3,23 +3,20 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/Auth";
 import Logout from "../pages/Logout";
 import ThemeToggle from "../components/ThemeToggle";
-import { Menu, X, Search } from "lucide-react";
+import { Menu, X, Search, ChevronDown } from "lucide-react";
 
 const Header = () => {
   const [isLoggedIn] = useAuth();
   const [sticky, setSticky] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [query, setQuery] = useState("");
-
   const navigate = useNavigate();
 
   useEffect(() => {
-    const handleScroll = () => setSticky(window.scrollY > 0);
+    const handleScroll = () => setSticky(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const toggleMenu = () => setIsMenuOpen((prev) => !prev);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -29,133 +26,148 @@ const Header = () => {
     setIsMenuOpen(false);
   };
 
+  const navItems = [
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+    { name: "Packages", path: "/packages" },
+    { name: "Gallery", path: "/gallery" },
+    { name: "Video", path: "/video" },
+    { name: "Partner", path: "/partner" },
+    { name: "Contact", path: "/contact" },
+  ];
+
   return (
     <header
-      className={`fixed top-0 left-0 z-50 w-full transition-all ${
-        // sticky ? "shadow bg-black dark:bg-white" : "bg-transparent"
-        sticky ? "shadow dark:bg-neutral-200 bg-neutral-500" : "bg-transparent"
+      className={`fixed top-0 left-0 z-50 w-full transition-all duration-300 ${
+        sticky
+          ? "bg-gray-900/95 dark:bg-white/95 backdrop-blur-xl shadow-lg"
+          : "bg-gray-900/50 dark:bg-white/50 backdrop-blur-md"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* LEFT LOGO */}
+          {/* LOGO */}
           <Link
             to="/"
-            className="text-xl font-extrabold tracking-wide text-primary"
+            className="flex items-center gap-2.5 font-extrabold tracking-tight text-primary select-none hover:opacity-80 transition-opacity flex-shrink-0"
           >
-            adarsha-tour.com
+            <img
+              src="/dist/img/logo.svg"
+              alt="Top of the World"
+              className="h-9 w-auto object-contain"
+            />
+            <div className="hidden sm:flex flex-col">
+              <span className="text-base md:text-lg leading-none font-black">
+                Top of the World
+              </span>
+              <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">
+                Adventure Tours
+              </span>
+            </div>
           </Link>
 
-          {/* CENTER NAV */}
-          <nav className="hidden md:flex items-center gap-8 text-base font-medium">
-            {[
-              { name: "Home", path: "/" },
-              { name: "About", path: "/about" },
-              { name: "Packages", path: "/packages" },
-              { name: "Gallery", path: "/gallery" },
-              { name: "Video", path: "/video" },
-              { name: "Partner", path: "/partner" },
-              // { name: "Blog", path: "/blog" },
-              { name: "Contact", path: "/contact" },
-            ].map((item) => (
+          {/* CENTER NAV - DESKTOP */}
+          <nav className="hidden lg:flex items-center gap-1">
+            {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className="relative transition-all duration-300 hover:text-primary group hover:-translate-y-[8px]  hover:font-extrabold"
+                className="px-4 py-2 rounded-lg text-sm font-semibold text-gray-300 dark:text-gray-700 hover:text-primary dark:hover:text-primary hover:bg-primary/10 dark:hover:bg-primary/10 transition-all duration-200 relative group"
               >
-                {/* Text */}
-                <span className="relative z-10">{item.name}</span>
-
-                {/* Animated Underline */}
-                <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                {item.name}
+                <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full"></span>
               </Link>
             ))}
           </nav>
 
-          {/* RIGHT CONTROLS */}
-          <div className="flex items-center gap-4">
-            {/* SEARCH BAR */}
+          {/* RIGHT SECTION */}
+          <div className="flex items-center gap-3">
+            {/* SEARCH BAR - DESKTOP */}
             <form
               onSubmit={handleSearch}
-              className="hidden md:flex items-center border rounded-full px-3 py-1 bg-white dark:bg-gray-800"
+              className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full border border-gray-700 dark:border-gray-300 bg-gray-800/50 dark:bg-gray-100/50 hover:border-primary/30 focus-within:border-primary focus-within:bg-gray-800 dark:focus-within:bg-gray-100 transition-all duration-200"
             >
-              <Search className="w-4 h-4 text-gray-500 mr-2" />
+              <Search className="w-4 h-4 text-gray-500 flex-shrink-0" />
               <input
                 type="text"
-                placeholder="Search trips"
+                placeholder="Search trips..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                className="bg-transparent outline-none text-sm text-black dark:text-white w-36"
+                className="bg-transparent outline-none text-sm text-white dark:text-gray-900 placeholder-gray-500 dark:placeholder-gray-600 w-40"
               />
             </form>
 
-            {isLoggedIn && <Logout />}
+            {/* THEME TOGGLE */}
+            <div className="hidden sm:block">
+              <ThemeToggle />
+            </div>
 
-            <ThemeToggle />
+            {/* LOGOUT */}
+            {isLoggedIn && (
+              <div className="hidden sm:block">
+                <Logout />
+              </div>
+            )}
 
-            {/* MOBILE TOGGLE */}
+            {/* MOBILE MENU BUTTON */}
             <button
-              className="md:hidden p-2 rounded flex items-center justify-center"
-              onClick={toggleMenu}
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="lg:hidden p-2.5 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors"
+              aria-label="Toggle menu"
             >
               {isMenuOpen ? (
-                <X className="w-7 h-7" />
+                <X className="w-6 h-6 text-gray-300 dark:text-gray-700" />
               ) : (
-                <Menu className="w-7 h-7" />
+                <Menu className="w-6 h-6 text-gray-300 dark:text-gray-700" />
               )}
             </button>
           </div>
         </div>
       </div>
-      {/* ✅ MOBILE MENU */}
+
+      {/* MOBILE MENU */}
       {isMenuOpen && (
-        <div className="md:hidden fixed top-20 left-0 w-full z-40 px-6">
-          <div className="rounded-2xl shadow-xl bg-neutral-500 dark:bg-neutral-200 py-8">
-            <div className="flex flex-col items-center gap-6 text-base font-semibold">
-              {[
-                { name: "Home", path: "/" },
-                { name: "About", path: "/about" },
-                { name: "Packages", path: "/packages" },
-                { name: "Gallery", path: "/gallery" },
-                { name: "Video", path: "/video" },
-                { name: "Partner", path: "/partner" },
-                // { name: "Blog", path: "/blog" },
-                { name: "Contact", path: "/contact" },
-              ].map((item) => (
+        <div className="lg:hidden border-t border-gray-800 dark:border-gray-200 bg-gray-900/95 dark:bg-white/95 backdrop-blur-xl animate-in fade-in slide-in-from-top-2 duration-200">
+          <div className="max-w-7xl mx-auto px-4 py-6 space-y-4">
+            {/* MOBILE SEARCH */}
+            <form
+              onSubmit={handleSearch}
+              className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-gray-700 dark:border-gray-300 bg-gray-800/50 dark:bg-gray-100/50"
+            >
+              <Search className="w-4 h-4 text-gray-500 flex-shrink-0" />
+              <input
+                type="text"
+                placeholder="Search trips..."
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                className="bg-transparent outline-none text-sm text-white dark:text-gray-900 placeholder-gray-500 dark:placeholder-gray-600 w-full"
+              />
+            </form>
+
+            {/* MOBILE NAV ITEMS */}
+            <nav className="space-y-1">
+              {navItems.map((item) => (
                 <Link
                   key={item.path}
                   to={item.path}
                   onClick={() => setIsMenuOpen(false)}
-                  className="relative transition-all duration-300 hover:text-primary hover:scale-110 font-bold"
+                  className="block px-4 py-2.5 rounded-lg text-sm font-semibold text-gray-300 dark:text-gray-700 hover:bg-primary/10 dark:hover:bg-primary/10 hover:text-primary transition-all duration-200"
                 >
                   {item.name}
                 </Link>
               ))}
-            </div>
+            </nav>
 
-            {/* ✅ MOBILE SEARCH */}
-            <form
-              onSubmit={handleSearch}
-              className="flex items-center gap-2 border rounded-full px-4 py-2 bg-white dark:bg-gray-800 mt-8 mx-6"
-            >
-              <Search className="w-4 h-4 text-gray-500" />
-              <input
-                type="text"
-                placeholder="Search trips"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                className="bg-transparent outline-none text-sm text-black dark:text-white w-full"
-              />
-            </form>
-
-            {isLoggedIn && (
-              <div className="mt-6 flex justify-center">
-                <Logout />
+            {/* MOBILE ACTIONS */}
+            <div className="border-t border-gray-800 dark:border-gray-200 pt-4 space-y-3">
+              {isLoggedIn && (
+                <div className="px-2">
+                  <Logout />
+                </div>
+              )}
+              <div className="px-2">
+                <ThemeToggle />
               </div>
-            )}
-
-            <div className="mt-6 flex justify-center">
-              <ThemeToggle />
             </div>
           </div>
         </div>

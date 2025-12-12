@@ -81,7 +81,7 @@ function Footer() {
           {/* SOCIAL ICONS CENTERED */}
           <div className="mb-5 flex items-center justify-center flex-wrap gap-3">
             <a
-              href="https://youtube.com/c/PesonaIndonesiaofficial"
+              href="https://www.youtube.com/@topoftheworldadventure"
               target="_blank"
               rel="noreferrer"
               className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 dark:text-slate-600 hover:border-primary hover:bg-primary hover:dark:text-black"
@@ -99,7 +99,7 @@ function Footer() {
             </a>
 
             <a
-              href="https://instagram.com/pesona.indonesia?igshid=YmMyMTA2M2Y="
+              href="https://www.instagram.com/topoftheworldadventure/"
               target="_blank"
               rel="noreferrer"
               className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 dark:text-slate-600 hover:border-primary hover:bg-primary hover:dark:text-black"
@@ -117,7 +117,7 @@ function Footer() {
             </a>
 
             <a
-              href="https://twitter.com/pesonaindonesia"
+              href="https://x.com/TopoftheWorldA1"
               target="_blank"
               rel="noreferrer"
               className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 dark:text-slate-600 hover:border-primary hover:bg-primary hover:dark:text-black"
@@ -135,7 +135,7 @@ function Footer() {
             </a>
 
             <a
-              href="https://www.tiktok.com/@pesonaindonesia?is_from_webapp=1&sender_device=pc"
+              href="https://www.tiktok.com/@topoftheworldadv"
               target="_blank"
               rel="noreferrer"
               className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 dark:text-slate-600 hover:border-primary hover:bg-primary hover:dark:text-black"
@@ -153,7 +153,7 @@ function Footer() {
             </a>
 
             <a
-              href="https://facebook.com/pesona.indonesia?_rdc=1&_rdr"
+              href="https://www.facebook.com/topoftheworldadventure/"
               target="_blank"
               rel="noreferrer"
               className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 dark:text-slate-600 hover:border-primary hover:bg-primary hover:dark:text-black"

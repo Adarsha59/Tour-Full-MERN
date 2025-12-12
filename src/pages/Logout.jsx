@@ -1,26 +1,26 @@
 import React from "react";
 import { useAuth } from "../context/Auth";
+import { useNavigate } from "react-router-dom";
 
 function Logout() {
   const [isLoggedIn, setIsLoggedIn] = useAuth();
+  const navigate = useNavigate();
+
   const handleLogout = () => {
-    setIsLoggedIn(false);
     localStorage.removeItem("userdetails");
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+
+    navigate("/login");
   };
+
   return (
-    <div>
-      <button
-        className="btn btn-outline btn-primary mx-3"
-        onClick={handleLogout}
-      >
-        Logout
-      </button>
-    </div>
-  );
-  return (
-    <div>
-      <button className="btn btn-outline btn-primary mx-3">Login</button>
-    </div>
+    <button
+      onClick={handleLogout}
+      className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+    >
+      Logout
+    </button>
   );
 }
 

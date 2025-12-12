@@ -34,6 +34,7 @@ import PackageCategoryAdmin from "./pages/admin/categories/PackageCategoryAdmin"
 import CategoryPackages from "./pages/CategoryPackages";
 import PackageVideoAdmin from "./pages/admin/video/VideoAdmin";
 import PackageVideoCarousel from "./components/VideoCarousel";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 export default function App() {
   return (
@@ -57,28 +58,27 @@ export default function App() {
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/blog/:title" element={<Blogpage />} />
               </Route>
-              <Route path="/admin" element={<AdminLayout />}>
+              <Route
+                path="/admin"
+                element={
+                  <ProtectedRoute>
+                    <AdminLayout />
+                  </ProtectedRoute>
+                }
+              >
                 <Route path="dashboard" element={<DashboardHome />} />
                 <Route path="users" element={<AdminUser />} />
                 <Route path="video" element={<AdminUser />} />
-
                 <Route path="blog" element={<AdminBlog />} />
                 <Route path="contacts" element={<Blogs />} />
                 <Route path="categories" element={<PackageCategoryAdmin />} />
-                <Route path="/admin/videos" element={<PackageVideoAdmin />} />
-
+                <Route path="videos" element={<PackageVideoAdmin />} />
                 <Route path="website" element={<WebsiteList />} />
                 <Route path="website/create" element={<WebsiteCreate />} />
                 <Route path="website/edit/:id" element={<WebsiteEdit />} />
-                <Route path="/admin/packages" element={<PackageList />} />
-                <Route
-                  path="/admin/packages/create"
-                  element={<PackageCreate />}
-                />
-                <Route
-                  path="/admin/packages/edit/:id"
-                  element={<PackageEdit />}
-                />
+                <Route path="packages" element={<PackageList />} />
+                <Route path="packages/create" element={<PackageCreate />} />
+                <Route path="packages/edit/:id" element={<PackageEdit />} />
               </Route>
 
               {/* <Route path="/" element={<Buy />} /> */}
